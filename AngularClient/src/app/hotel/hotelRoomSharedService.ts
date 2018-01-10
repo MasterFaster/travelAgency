@@ -4,5 +4,5 @@ import {Injectable, EventEmitter} from "@angular/core";
 export class HotelRoomSharedService {
     changedEmitter = new EventEmitter<any>()
     id? : number;
-
+    name: string;
 }

@@ -41,6 +41,7 @@ export class HotelRoomComponent implements OnInit {
 
   getRooms(id): void{ 
     this.startLoader();
+    this.rooms = null;
     let params = new HttpParams().set('id',id);
     this.http.get<HotelRoom>('/room/get',{params: params}).subscribe(hotelRoomGet => {
       this.rooms = hotelRoomGet;

@@ -39,9 +39,10 @@ export class HotelComponent implements OnInit {
       });
   }
 
-  showRooms(id):void{
+  showRooms(id, name):void{
       this.debugger = id;
       this.hotelRoomService.id = id;
+      this.hotelRoomService.name = name;
       this.hotelRoomService.changedEmitter.emit(id);
   }
 

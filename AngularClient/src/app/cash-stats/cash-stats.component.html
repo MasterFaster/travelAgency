@@ -25,7 +25,7 @@
       <td>{{client.client.city}}</td>
       <td>{{client.client.street}}</td>
       <td>{{client.client.houseNumber}}</td>
-      <td [style.background-color]= "client.debt >= '0' ? 'green' : 'red'">{{client.debt}}</td>
+      <td [style.background-color]= "client.debt > '0' ? 'red' : 'green'">{{client.debt}}</td>
   </tr>
 </table>  
 

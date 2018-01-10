@@ -149,8 +149,9 @@ public class TravelJDBCTemplate {
         */
        String sql = "SELECT * FROM pokoje WHERE id_pokoju not IN (SELECT id_pokoju from pokoje " +
                "JOIN rezerwacje_pokoje USING(id_pokoju) JOIN rezerwacje USING(id_rez) " +
-               "WHERE pokoje.id_hotelu = ? AND TO_DATE(od,'DD.MM.YY') < ? AND ? <  TO_DATE(do,'DD.MM.YY'))";
-       List<Room> roomsInHotel = jdbcTemplate.query(sql, new Object[]{id, returnDate, departureDate}, new RoomMapper());
+               "WHERE pokoje.id_hotelu = ? AND TO_DATE(od,'DD.MM.YY') < ? AND ? <  TO_DATE(do,'DD.MM.YY')) " +
+               "AND id_hotelu = ?";
+       List<Room> roomsInHotel = jdbcTemplate.query(sql, new Object[]{id, returnDate, departureDate,id}, new RoomMapper());
 
 
         return roomsInHotel;

@@ -43,3 +43,21 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+
+  .panel{
+    width: 60%;
+    margin-left: 1cm;
+    border-color: rgb(155, 155, 155);
+  }
+  .panel-heading{
+    font-size: 15px;
+    background-color: rgb(155, 155, 155);
+    color: #444444;
+    border-color: rgb(155, 155, 155);
+    /* text-shadow: -1px -1px 1px #000, 1px 1px 1px #ccc; */
+    text-shadow: 0 1px 0 #FFFFFF;
+    font-weight: 900;
+    background: #CCCCCC;
+  }
+  

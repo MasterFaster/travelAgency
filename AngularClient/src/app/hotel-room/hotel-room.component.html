@@ -13,22 +13,30 @@
 
 <button id = "addBtn" class = "btn btn-sm"  md-button (click)="addRoom(roomNumber.value, peopleNumber.value,
 price.value)" [disabled]="!complexForm.valid"> Add Room </button>
-<table class = "table table-striped">
-  <tr>
-    <th>ID</th>
-    <th>Hotel ID</th>
-    <th>Room Number</th>
-    <th>People Number</th>
-    <th>Price</th>
-    <th>Options</th>
-  </tr>
-  <tr *ngFor="let room of rooms">
-      <td>{{room.id}}</td>
-      <td>{{room.hotelId}}</td>
-      <td>{{room.roomNumber}}</td>
-      <td>{{room.peopleNumber}}</td>
-      <td>{{room.price}}</td>
-      <td><button id = "deleteBtn" class = "btn btn-sm" md-button (click)="deleteRoom(room)"> Delete </button></td>
-  </tr>
-</table>
+
+<div class="panel panel-info">
+  <div class="panel-heading">{{hotelRoomService.name}} rooms</div>
+  <div class="panel-body">
+    <table class = "table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Hotel ID</th>
+        <th>Room Number</th>
+        <th>People Number</th>
+        <th>Price</th>
+        <th>Options</th>
+      </tr>
+      <tr *ngFor="let room of rooms">
+          <td>{{room.id}}</td>
+          <td>{{room.hotelId}}</td>
+          <td>{{room.roomNumber}}</td>
+          <td>{{room.peopleNumber}}</td>
+          <td>{{room.price}}</td>
+          <td><button id = "deleteBtn" class = "btn btn-sm" md-button (click)="deleteRoom(room)"> Delete </button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
 <div #loader id="loader"></div>
