@@ -190,6 +190,7 @@ public class TravelJDBCTemplate {
 
     public void addReservation(Reservation reservation){
         int index = jdbcTemplate.queryForObject("select last_number from user_sequences where sequence_name='REZERWACJESEQ'", Integer.class);
+        reservation.setId(index);
         String sql = "INSERT INTO rezerwacje " +
                 "(od, do, ID_HOTELU, id_klienta) VALUES (?,?,?,?)";
         jdbcTemplate.update(sql,new Object[]{reservation.getDepartureDate(), reservation.getReturnDate(),
@@ -215,7 +216,8 @@ public class TravelJDBCTemplate {
     }
 
     public void updateReservationPrice(int id){
-        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(dataSource).withProcedureName("obliczsumcene");
+        System.out.println("Updating in stored procedure = " + id);
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(dataSource).withProcedureName("obliczSumCene");
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("id_rezerwacji", id);
         simpleJdbcCall.execute(in);
