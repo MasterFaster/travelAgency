@@ -1,5 +1,5 @@
 <form [formGroup]='complexForm' novalidate>
-  Departure Airport:
+  <h4>Departure Airport:</h4>
   <select formControlName='departureAirportControl' ngModel #departureAirport class = "form-control"> <!-- (change)="hotelChanged($event.target.value)"> -->
     <option disabled>
     <td>-id-</td>
@@ -18,7 +18,7 @@
   </select>
   <div *ngIf="!complexForm.controls['departureAirportControl'].valid && complexForm.controls['departureAirportControl'].touched" class="alert alert-danger">Departure airport is required</div>
 
-  Arrival Airport:
+  <h4>Arrival Airport:</h4>
   <select formControlName='arrivalAirportControl' #arrivalAirport class = "form-control"> 
     <option disabled>
     <td>-id-</td>
@@ -38,19 +38,18 @@
   <div *ngIf="!complexForm.controls['arrivalAirportControl'].valid && complexForm.controls['arrivalAirportControl'].touched" class="alert alert-danger">Arrival airport is required</div>
 
 
-  Departure Date:
+  <h4>Departure Date:</h4>
   <input style="height: 40px" type="datetime-local" class = "form-control" #departureDateTime (blur) = "datesValidation(departureDateTime.value, arrivalDateTime.value)">
 
-  Arrival Date:
+  <h4>Arrival Date:</h4>
   <input style="height: 40px" type="datetime-local" class = "form-control" #arrivalDateTime [min]="departureDateTime.value"  (blur) = "datesValidation(departureDateTime.value, arrivalDateTime.value)">
   <div *ngIf="!checkDateValid" class="alert alert-danger">Departure date must be before arrival date</div>
 
 
-  Price:
   <input formControlName='priceControl' ngModel #price type = "text" class = "form-control" placeholder="Price" />
   <div *ngIf="!complexForm.controls['priceControl'].valid && complexForm.controls['priceControl'].touched" class="alert alert-danger">Price is required and it has to be a float with max two decimal places</div>
 
-  Number of seats:
+
   <input formControlName='peopleNumberControl' ngModel #peopleNumber type = "text" class = "form-control" placeholder="Number of seats" />
   <div *ngIf="!complexForm.controls['peopleNumberControl'].valid && complexForm.controls['peopleNumberControl'].touched" class="alert alert-danger">Number of seats is required and it has to be an integer</div>
 </form>

@@ -1,6 +1,6 @@
 <form [formGroup]='complexForm' novalidate>
   <div class="col-sm-6">
-    SELECT CLIENT:
+    <h4>SELECT CLIENT:</h4>
     <select formControlName='clientControl' ngModel class = "form-control" #selectedClient>
       <option disabled>
           <td>-id-</td>
@@ -17,7 +17,7 @@
     </select>
     <div *ngIf="!complexForm.controls['clientControl'].valid && complexForm.controls['clientControl'].touched" class="alert alert-danger">Client is required</div>
 
-    SELECT HOTEL:
+    <h4>SELECT HOTEL:</h4>
     <select formControlName='hotelControl' ngModel class = "form-control" (click) = "reset()" #selectedHotel> <!-- (change)="hotelChanged($event.target.value)"> -->
     <option disabled>
     <td>-id-</td>
@@ -34,15 +34,15 @@
     </select>
     <div *ngIf="!complexForm.controls['hotelControl'].valid && complexForm.controls['hotelControl'].touched" class="alert alert-danger">Departure airport is required</div>
 
-    Departure:
+    <h4>Departure:</h4>
     <input style="height: 40px" class = "form-control" (click) = "reset()" #departureDate type="date" (blur) = "datesValidation(departureDate.value, returnDate.value)">
 
-    Return:
+    <h4>Return:</h4>
     <input style="height: 40px" class = "form-control"  (click) = "reset()" #returnDate type="date" [min]="departureDate.value" (blur) = "datesValidation(departureDate.value, returnDate.value)">
     <div *ngIf="!checkDateValid" class="alert alert-danger">Departure date date must be before return date</div>
 
 
-    Number Of People:
+    <h4>Number Of People:</h4>
     <input formControlName='peopleNumberControl' class = "form-control" (click) = "reset()" #peopleNumberField>
     <div *ngIf="!complexForm.controls['peopleNumberControl'].valid && complexForm.controls['peopleNumberControl'].touched" class="alert alert-danger">Number of people is required and it has to be an integer smaller than 501</div>
 
@@ -59,7 +59,7 @@
   </div>
 
   <div *ngIf="!ifNoRooms" class="col-sm-6">
-    SELECT ROOMS:
+    <h4>SELECT ROOMS:</h4>
     <table class = "table table-striped" align= "center">
       <tr>
         <th>Include</th>
@@ -77,7 +77,7 @@
       </tr>
     </table>  
 
-    SELECT TRIPS:
+    <h4>SELECT TRIPS:</h4>
     <table class = "table table-striped">
       <tr>
         <th>Include</th>
@@ -95,7 +95,7 @@
       </tr>
     </table> 
 
-    SELECT INSURANCE:
+    <h4>SELECT INSURANCE:</h4>
     <table class = "table table-striped">
       <tr>
         <th>Include</th>
