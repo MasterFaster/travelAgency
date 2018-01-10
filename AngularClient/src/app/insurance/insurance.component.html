@@ -1,0 +1,20 @@
+
+<p>
+  <button routerLink="/addAvailableInsurance" class = "btn btn-sm" md-button> Add Insurance </button>
+  <button [routerLink]="['/insuranceManagement']" class = "btn btn-sm" md-button (click)="getAvailableInsurances()"> Get Insurances </button>
+</p>
+<table class = "table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Type</th>
+    <th>Price/night/person</th>
+    <th>Options</th>
+  </tr>
+  <tr *ngFor="let insurance of insurances">
+      <td>{{insurance.id}}</td>
+      <td>{{insurance.type}}</td>
+      <td>{{insurance.price}}</td>
+      <td><button [routerLink]="['/insuranceManagement']" id="deleteBtn" class = "btn btn-sm" md-button (click)="deleteInsurance(insurance)"> Delete </button></td>
+  </tr>
+</table>  
+<div #loader id="loader"></div>

@@ -1,0 +1,29 @@
+<p>
+  <button md-button class = "btn btn-sm" routerLink="/addFlight"> Add Flight </button>
+  <button md-button class = "btn btn-sm" (click)="getFlights()"> Get Flights </button>
+</p>
+
+<table class = "table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Price</th>
+    <th>Seats</th>
+    <th>Departure Date</th>
+    <th>Arrival Date</th>
+    <th>Departure Airport</th>
+    <th>Arrival Airport</th>
+    <th>Options</th>
+  </tr>
+  <tr *ngFor="let flight of flights">
+      <td>{{flight.id}}</td>
+      <td>{{flight.price}}</td>
+      <td>{{flight.peopleNumber}}</td>
+      <td>{{flight.departureDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+      <td>{{flight.arrivalDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+      <td>{{flight.departureAirport.symbol}}</td>
+      <td>{{flight.arrivalAirport.symbol}}</td>
+      <td><button id = "deleteBtn" md-button class = "btn btn-sm" (click)="deleteFlight(flight)"> Delete </button></td>
+  </tr>
+</table>  
+
+<div #loader id="loader"></div>

@@ -1,0 +1,21 @@
+<p>
+  <button md-button routerLink="/addTrip" class = "btn btn-sm"> add trip </button>
+<button md-button (click)="getTrips()" class = "btn btn-sm"> get trips </button>
+</p>
+<table class = "table table-striped">
+<tr>
+  <th>ID</th>
+  <th>Destination</th>
+  <th>Price</th>
+  <th>Options</th>
+</tr>
+<tr *ngFor="let trip of trips">
+<td>{{trip.id}}</td>
+<td>{{trip.destination}}</td>
+<td>{{trip.price}}</td>
+<td><button md-button id = "detailsBtn" class = "btn btn-sm" (click) = "setTripSharedService(trip)"
+   routerLink = "/tripDetailsManagement" > Details </button>
+<button id = "deleteBtn" md-button class = "btn btn-sm" (click)="deleteTrip(trip)"> Delete </button></td>
+</tr>
+</table>  
+<div #loader id="loader"></div>

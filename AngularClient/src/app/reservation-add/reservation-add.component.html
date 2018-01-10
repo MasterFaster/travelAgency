@@ -1,0 +1,135 @@
+<form [formGroup]='complexForm' novalidate>
+  <div class="col-sm-6">
+    SELECT CLIENT:
+    <select formControlName='clientControl' ngModel class = "form-control" #selectedClient>
+      <option disabled>
+          <td>-id-</td>
+          <td>-firstName-</td>
+          <td>-secondName-</td>
+          <td>-pesel-</td>
+          </option>
+    <option *ngFor="let client of clients" [value] = "client.id"> <!-- [value]="category.id"> -->
+      <td>{{client.id}}</td>
+      <td>{{client.firstName}}</td>
+      <td>{{client.secondName}}</td>
+      <td>{{client.pesel}}</td>
+    </option>
+    </select>
+    <div *ngIf="!complexForm.controls['clientControl'].valid && complexForm.controls['clientControl'].touched" class="alert alert-danger">Client is required</div>
+
+    SELECT HOTEL:
+    <select formControlName='hotelControl' ngModel class = "form-control" (click) = "reset()" #selectedHotel> <!-- (change)="hotelChanged($event.target.value)"> -->
+    <option disabled>
+    <td>-id-</td>
+    <td>-name-</td>
+    <td>-stars-</td>
+    <td>-country-</td>
+    </option>
+    <option *ngFor="let hotel of hotels" [value] = "hotel.id"> <!-- [value]="category.id"> -->
+      <td>-{{hotel.id}}-</td>
+      <td>-{{hotel.name}}-</td>
+      <td>-{{hotel.stars}}-</td>
+      <td>-{{hotel.country}}-</td>
+    </option>
+    </select>
+    <div *ngIf="!complexForm.controls['hotelControl'].valid && complexForm.controls['hotelControl'].touched" class="alert alert-danger">Departure airport is required</div>
+
+    Departure:
+    <input style="height: 40px" class = "form-control" (click) = "reset()" #departureDate type="date" (blur) = "datesValidation(departureDate.value, returnDate.value)">
+
+    Return:
+    <input style="height: 40px" class = "form-control"  (click) = "reset()" #returnDate type="date" [min]="departureDate.value" (blur) = "datesValidation(departureDate.value, returnDate.value)">
+    <div *ngIf="!checkDateValid" class="alert alert-danger">Departure date date must be before return date</div>
+
+
+    Number Of People:
+    <input formControlName='peopleNumberControl' class = "form-control" (click) = "reset()" #peopleNumberField>
+    <div *ngIf="!complexForm.controls['peopleNumberControl'].valid && complexForm.controls['peopleNumberControl'].touched" class="alert alert-danger">Number of people is required and it has to be an integer smaller than 501</div>
+
+    <button class = "btn btn-sm" id = "detailsBtn" (click)="showAvailableRooms(selectedHotel.value, departureDate, returnDate, peopleNumberField.value)" [disabled]="!complexForm.valid">Show Available Rooms</button>
+
+    <button class = "btn btn-sm" id = "addBtn" (click)="addReservation(selectedClient.value, selectedHotel.value, departureDate, returnDate)" [disabled]="!complexForm.valid || selectedRooms==0">Add Reservation</button>
+
+    <button class = "btn btn-sm" id = "cancelBtn" routerLink="/reservationManagement">Cancel</button>
+
+  </div>
+
+  <div class="col-sm-6">
+    <div *ngIf="ifNoRooms" class="alert alert-danger">There is no room available</div>
+  </div>
+
+  <div *ngIf="!ifNoRooms" class="col-sm-6">
+    SELECT ROOMS:
+    <table class = "table table-striped" align= "center">
+      <tr>
+        <th>Include</th>
+        <th>ID</th>
+        <th>Room Number</th>
+        <th>Number of People</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let room of rooms">
+          <td><input type="checkbox" (change) = "selectedRoomChanged(room.id)"> </td>
+          <td>{{room.id}}</td>
+          <td>{{room.roomNumber}}</td>
+          <td>{{room.peopleNumber}}</td>
+          <td>{{room.price}}</td>
+      </tr>
+    </table>  
+
+    SELECT TRIPS:
+    <table class = "table table-striped">
+      <tr>
+        <th>Include</th>
+        <th>Number of People</th>
+        <th>ID</th>
+        <th>Destination</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let trip of trips">
+        <td><input type="checkbox" (change) = "selectedTripChanged(trip,peopleNumberTripField.value)"> </td>
+        <td><input class = "form-control smallInp" #peopleNumberTripField (blur) = "tripPeopleNumberChanged(trip, peopleNumberTripField.value)"></td>
+        <td>{{trip.id}}</td>
+        <td>{{trip.destination}}</td>
+        <td>{{trip.price}}</td>
+      </tr>
+    </table> 
+
+    SELECT INSURANCE:
+    <table class = "table table-striped">
+      <tr>
+        <th>Include</th>
+        <th>Type</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let insurance of insurances">
+        <td><input type="checkbox" (change) = "selectedInsuranceChanged(insurance)"> </td>
+        <td>{{insurance.type}}</td>
+        <td>{{insurance.price}}</td>
+      </tr>
+    </table>
+
+  </div>
+  <!--
+  <ul *ngFor="let room of rooms" >
+    <input type="checkbox" (change) = "selectedRoomChanged(room.id)"> 
+    room id: {{room.id}}
+    room number: {{room.roomNumber}} 
+    number of people: {{room.peopleNumber}}
+    price: {{room.price}}
+    <br>
+  </ul>
+
+
+  Insurances:
+  <ul *ngFor="let insurance of insurances" >
+  <input type="checkbox" (change) = "selectedInsuranceChanged(insurance)"> 
+  type: {{insurance.type}}
+  price: {{insurance.price}} 
+  <br>
+  </ul>
+
+  -->
+
+</form>
+<div #loader id="loader"></div>

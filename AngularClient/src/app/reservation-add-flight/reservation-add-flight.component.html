@@ -1,0 +1,81 @@
+<div class = "col-sm-6">
+  <form [formGroup]='complexForm' novalidate>
+    Departure Airport:
+    <select formControlName='departureAirportControl' ngModel #departureAirport class = "form-control" (click) = "reset()"> 
+      <option disabled>
+      <td>-id-</td>
+      <td>-name-</td>
+      <td>-symbol-</td>
+      <td>-country-</td>
+      <td>-city-</td>
+      </option>
+      <option *ngFor="let airport of airports" [value] = "airport.id">
+        <td>-{{airport.id}}-</td>
+        <td>-{{airport.name}}-</td>
+        <td>-{{airport.symbol}}-</td>
+        <td>-{{airport.country}}-</td>
+        <td>-{{airport.city}}-</td>
+      </option>
+    </select>
+    <div *ngIf="!complexForm.controls['departureAirportControl'].valid && complexForm.controls['departureAirportControl'].touched" class="alert alert-danger">Departure airport is required</div>
+
+    Arrival Airport:
+    <select formControlName='arrivalAirportControl' #arrivalAirport class = "form-control" (click) = "reset()"> 
+      <option disabled>
+      <td>-id-</td>
+      <td>-name-</td>
+      <td>-symbol-</td>
+      <td>-country-</td>
+      <td>-city-</td>
+      </option>
+      <option *ngFor="let airport of airports" [value] = "airport.id">
+        <td>-{{airport.id}}-</td>
+        <td>-{{airport.name}}-</td>
+        <td>-{{airport.symbol}}-</td>
+        <td>-{{airport.country}}-</td>
+        <td>-{{airport.city}}-</td>
+      </option>
+    </select>
+    <div *ngIf="!complexForm.controls['arrivalAirportControl'].valid && complexForm.controls['arrivalAirportControl'].touched" class="alert alert-danger">Arrival airport is required</div>
+
+    Departure Date:
+    <input formControlName='departureDateControl' style="height: 40px" type="date" class = "form-control" (click) = "reset()" #departureDate>
+
+    Number Of People:
+    <input formControlName='peopleNumberControl' class = "form-control" (click) = "reset()" #peopleNumberField>
+    <div *ngIf="!complexForm.controls['peopleNumberControl'].valid && complexForm.controls['peopleNumberControl'].touched" class="alert alert-danger">Number of people is required and it has to be an integer</div>
+
+    <button class = "btn btn-sm" id = "detailsBtn" (click)="showAvailableFlights(departureDate, departureAirport.value, arrivalAirport.value, peopleNumberField.value)" [disabled]="!complexForm.valid">Show Available Flights</button>
+
+    <button class = "btn btn-sm" id = "addBtn" (click)="addFlights()" [disabled]="!flightMainsAvailable">Add Flights</button>
+    
+    <button class = "btn btn-sm" id = "cancelBtn" routerLink="/reservationDetailsManagement">Cancel</button>
+  </form>
+</div>
+
+<div class = "col-sm-6">
+<div *ngIf="flightMainsListEmpty" class="alert alert-danger">There is no flight available</div>
+<table *ngIf="flightMainsAvailable" class = "table">
+  <tr>
+    <th>ID</th>
+    <th>Price</th>
+    <th>Seats</th>
+    <th>Departure Date</th>
+    <th>Arrival Date</th>
+    <th>Departure Airport</th>
+    <th>Arrival Airport</th>
+  </tr>
+  <tr *ngFor="let flight of flightMains.flights">
+    <td>{{flight.id}}</td>
+    <td>{{flight.price}}</td>
+    <td>{{flight.peopleNumber}}</td>
+    <td>{{flight.departureDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+    <td>{{flight.arrivalDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+    <td>{{flight.departureAirport.symbol}}</td>
+    <td>{{flight.arrivalAirport.symbol}}</td>
+  </tr>
+</table>
+
+</div>
+
+  <div #loader id="loader"></div>

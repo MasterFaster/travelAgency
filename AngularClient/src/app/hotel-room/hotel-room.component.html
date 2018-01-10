@@ -1,0 +1,34 @@
+<form [formGroup]='complexForm' novalidate>
+  
+  <input formControlName='roomNumberControl' ngModel #roomNumber type = "text" class = "form-control" placeholder="Room Number" />
+  <div *ngIf="!complexForm.controls['roomNumberControl'].valid && complexForm.controls['roomNumberControl'].touched" class="alert alert-danger">Room number is required and it has to be an integer</div>
+  
+  <input formControlName='peopleNumberControl' ngModel #peopleNumber type = "text" class = "form-control" placeholder="Number Of People" />
+  <div *ngIf="!complexForm.controls['peopleNumberControl'].valid && complexForm.controls['peopleNumberControl'].touched" class="alert alert-danger">Number of people is required and it has to be an integer</div>
+
+  <input formControlName='priceControl' ngModel #price type = "text" class = "form-control" placeholder="Price For Night" />
+  <div *ngIf="!complexForm.controls['priceControl'].valid && complexForm.controls['priceControl'].touched" class="alert alert-danger">Price is required and it has to be an integer</div>
+
+</form>
+
+<button id = "addBtn" class = "btn btn-sm"  md-button (click)="addRoom(roomNumber.value, peopleNumber.value,
+price.value)" [disabled]="!complexForm.valid"> Add Room </button>
+<table class = "table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Hotel ID</th>
+    <th>Room Number</th>
+    <th>People Number</th>
+    <th>Price</th>
+    <th>Options</th>
+  </tr>
+  <tr *ngFor="let room of rooms">
+      <td>{{room.id}}</td>
+      <td>{{room.hotelId}}</td>
+      <td>{{room.roomNumber}}</td>
+      <td>{{room.peopleNumber}}</td>
+      <td>{{room.price}}</td>
+      <td><button id = "deleteBtn" class = "btn btn-sm" md-button (click)="deleteRoom(room)"> Delete </button></td>
+  </tr>
+</table>
+<div #loader id="loader"></div>

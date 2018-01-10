@@ -1,0 +1,38 @@
+<p>
+  <button routerLink="/addReservation" class = "btn btn-sm" md-button> Add Reservation </button>
+  <button class = "btn btn-sm" md-button (click)="getReservations()"> Get Reservations </button>
+</p>
+
+<table class = "table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Departure Date</th>
+    <th>Return Date</th>
+    <th>HotelId</th>
+    <th>Hotel Name</th>
+    <th>ClientId</th>
+    <th>First Name</th>
+    <th>Second Name</th>
+    <th>Price</th>
+    <th>Operations</th>
+  </tr>
+  <tr *ngFor="let reservation of reservations">
+      <td>{{reservation.id}}</td>
+      <td>{{reservation.departureDate}}</td>
+      <td>{{reservation.returnDate}}</td>
+      <td>{{reservation.hotelId}}</td>
+      <td>{{reservation.hotel.name}}</td>
+      <td>{{reservation.clientId}}</td>
+      <td>{{reservation.client.firstName}}</td>
+      <td>{{reservation.client.secondName}}</td>
+      <td>{{reservation.price}}</td>
+      <td><button id = "detailsBtn" class = "btn btn-sm" (click) = "setReservationSharedService(reservation)"
+       routerLink="/reservationDetailsManagement">Details</button>
+       <button id = "deleteBtn" class = "btn btn-sm" (click) = "deleteReservation(reservation)">Delete</button>
+      </td>
+  </tr>
+</table>
+
+
+
+<div #loader id="loader"></div>

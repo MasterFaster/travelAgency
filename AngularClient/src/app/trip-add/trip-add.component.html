@@ -1,0 +1,56 @@
+<form [formGroup]='complexForm' novalidate>
+
+  <input #destination formControlName='destinationControl' type = "text" class = "form-control" placeholder="Destination" />
+  <div *ngIf="!complexForm.controls['destinationControl'].valid && complexForm.controls['destinationControl'].touched" class="alert alert-danger">Destination is required</div>
+
+  <input #price formControlName= "priceControl" type = "text" class = "form-control" placeholder="Price" />
+  <div *ngIf="!complexForm.controls['priceControl'].valid && complexForm.controls['priceControl'].touched" class="alert alert-danger">Price is required and it has to be a float with max two decimal places</div>
+
+</form>
+
+<!--
+Hotels:
+<ul *ngFor="let hotel of hotels" >
+  <input type="checkbox" (change) = "selectedHotelChanged(hotel.id)"> 
+  ID: {{hotel.id}}
+  Name: {{hotel.name}} 
+  Country: {{hotel.country}}
+  City: {{hotel.city}}
+  Street: {{hotel.street}}
+  houseNumber: {{hotel.houseNumber}}
+  <br>
+</ul>
+-->
+
+
+<table id = "hotelTable" class = "table">
+    <tr>
+      <th>Includes</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Stars</th>
+      <th>Country</th>
+      <th>City</th>
+      <th>Street</th>
+      <th>HouseNumber</th>
+    </tr>
+    <tr *ngFor="let hotel of hotels">
+        <td align = "center"><input type="checkbox" (change) = "selectedHotelChanged(hotel)"> </td>
+        <td>{{hotel.id}}</td>
+        <td>{{hotel.name}}</td>
+        <td>{{hotel.stars}}</td>
+        <td>{{hotel.country}}</td>
+        <td>{{hotel.city}}</td>
+        <td>{{hotel.street}}</td>
+        <td>{{hotel.houseNumber}}</td>
+    </tr>
+  </table> 
+
+
+<p>
+<button id = "addBtn" md-button class = "btn btn-sm" (click)="addTrip(destination.value, price.value)" [disabled]="!complexForm.valid"> Add Trip </button>
+<button id = "cancelBtn" routerLink="/tripManagement" class = "btn btn-sm" md-button > Cancel </button>
+</p>
+
+
+<div #loader id="loader"></div>

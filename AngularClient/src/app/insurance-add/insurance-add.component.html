@@ -1,0 +1,14 @@
+<form [formGroup]='complexForm' novalidate>
+
+    <input #type formControlName='typeControl' type = "text" class = "form-control" placeholder="Insurance Type" />
+    <div *ngIf="!complexForm.controls['typeControl'].valid && complexForm.controls['typeControl'].touched" class="alert alert-danger">Type is required</div>
+
+    <input #price formControlName='priceControl' type = "text" class = "form-control" placeholder="Price" />
+    <div *ngIf="!complexForm.controls['priceControl'].valid && complexForm.controls['priceControl'].touched" class="alert alert-danger">Price is required and it has to be a float with max two decimal places</div>
+
+</form>
+
+<button id = "addBtn" md-button class = "btn btn-sm" (click)="addInsurance(type.value, price.value)" [disabled]="!complexForm.valid"> Add Insurance </button>
+<button id = "cancelBtn" routerLink="/insuranceManagement" class = "btn btn-sm" md-button > Cancel </button>
+
+<div #loader id="loader"></div>

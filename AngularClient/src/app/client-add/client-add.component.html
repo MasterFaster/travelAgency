@@ -1,0 +1,31 @@
+<form [formGroup]='complexForm' novalidate>
+
+    <input formControlName='firstNameControl' ngModel #firstName type = "text" class = "form-control" placeholder="First Name" />
+    <div *ngIf="!complexForm.controls['firstNameControl'].valid && complexForm.controls['firstNameControl'].touched" class="alert alert-danger">First Name is required</div>
+    
+    <input formControlName='secondNameControl' ngModel #secondName type = "text" class = "form-control" placeholder="Second Name" />
+    <div *ngIf="!complexForm.controls['secondNameControl'].valid && complexForm.controls['secondNameControl'].touched" class="alert alert-danger">Second Name is required</div>
+
+    <input formControlName='peselControl' ngModel #pesel type = "text" class = "form-control" placeholder="Pesel" />
+    <div *ngIf="!complexForm.controls['peselControl'].valid && complexForm.controls['peselControl'].touched" class="alert alert-danger">Pesel is required and it has to be an integer</div>
+
+    <input formControlName='phoneNrControl'  ngModel #phoneNr type = "text" class = "form-control" placeholder="Phone Number">
+    <div *ngIf="!complexForm.controls['phoneNrControl'].valid && complexForm.controls['phoneNrControl'].touched" class="alert alert-danger">Phone Number has to be a number</div>
+ 
+    <input #email type = "text" class = "form-control" placeholder="E-mail">
+    <input #country type = "text" class = "form-control" placeholder="Country" />
+    <input #city type = "text" class = "form-control"  placeholder="City" />
+    <input #street type = "text" class = "form-control" placeholder="Street" />
+    <input #houseNr type = "text" class = "form-control" placeholder="House Number" />
+
+</form>
+
+<p>
+    <button id = "addBtn" md-button class = "btn btn-sm" (click)="addClient(firstName.value, secondName.value, pesel.value,
+    phoneNr.value, email.value, country.value, city.value, street.value, houseNr.value)"
+    routerLink="/clientManagement" [disabled]="!complexForm.valid"> Add Client </button>
+
+    <button id = "cancelBtn" md-button type = "button" class = "btn btn-sm" routerLink="/clientManagement"> Cancel </button>
+</p>
+
+<div #loader id="loader"></div> 

@@ -1,0 +1,228 @@
+<p>
+  <button routerLink="/addPayment" class = "btn btn-sm" md-button> Add Payment </button>
+  <button routerLink="/addReservationFlight" class = "btn btn-sm" md-button> Add Flight </button>
+</p>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">Reservation Information</div>
+  <div class="panel-body">
+    <table class = "table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Departure Date</th>
+        <th>Return Date</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+          <td>{{reservationDetailsSS.reservation.id}}</td>
+          <td>{{reservationDetailsSS.reservation.departureDate}}</td>
+          <td>{{reservationDetailsSS.reservation.returnDate}}</td>
+          <td>{{reservationDetailsSS.reservation.price}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">Client Information</div>
+  <div class="panel-body">
+    <table class = "table table-striped">
+      <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Second Name</th>
+          <th>PESEL</th>
+          <th>Phone</th>
+          <th>EMAIL</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>Street</th>
+          <th>House Number</th>
+        </tr>
+      <tr *ngIf="isClientAvailable">
+          <td>{{reservationDetailsSS.reservation.client.id}}</td>
+          <td>{{reservationDetailsSS.reservation.client.firstName}}</td>
+          <td>{{reservationDetailsSS.reservation.client.secondName}}</td>
+          <td>{{reservationDetailsSS.reservation.client.pesel}}</td>
+          <td>{{reservationDetailsSS.reservation.client.phoneNumber}}</td>
+          <td>{{reservationDetailsSS.reservation.client.email}}</td>
+          <td>{{reservationDetailsSS.reservation.client.country}}</td>
+          <td>{{reservationDetailsSS.reservation.client.city}}</td>
+          <td>{{reservationDetailsSS.reservation.client.street}}</td>
+          <td>{{reservationDetailsSS.reservation.client.houseNumber}}</td>
+          <!--<td>{{client.id}}</td>
+          <td>{{client.firstName}}</td>
+          <td>{{client.secondName}}</td>
+          <td>{{client.pesel}}</td>
+          <td>{{client.phoneNumber}}</td>
+          <td>{{client.email}}</td>
+          <td>{{client.country}}</td>
+          <td>{{client.city}}</td>
+          <td>{{client.street}}</td>
+          <td>{{client.houseNumber}}</td>
+          -->
+      </tr>
+    </table> 
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">Hotel Information</div>
+  <div class="panel-body">
+    <table class = "table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Stars</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>HouseNumber</th>
+      </tr>
+      <tr *ngIf="isHotelAvailable">
+          <td>{{reservationDetailsSS.reservation.hotel.id}}</td>
+          <td>{{reservationDetailsSS.reservation.hotel.name}}</td>
+          <td>{{reservationDetailsSS.reservation.hotel.stars}}</td>
+          <td>{{reservationDetailsSS.reservation.hotel.country}}</td>
+          <td>{{reservationDetailsSS.reservation.hotel.city}}</td>
+          <td>{{reservationDetailsSS.reservation.hotel.street}}</td>
+          <td>{{reservationDetailsSS.reservation.hotel.houseNumber}}</td>
+          <!--<td>{{hotel.id}}</td>
+          <td>{{hotel.name}}</td>
+          <td>{{hotel.stars}}</td>
+          <td>{{hotel.country}}</td>
+          <td>{{hotel.city}}</td>
+          <td>{{hotel.street}}</td>
+          <td>{{hotel.houseNumber}}</td>
+          -->
+      </tr>
+    </table> 
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">Rooms Information</div>
+  <div class="panel-body">
+    <table class = "table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Hotel ID</th>
+        <th>Room Number</th>
+        <th>People Number</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let room of rooms">
+          <td>{{room.id}}</td>
+          <td>{{room.hotelId}}</td>
+          <td>{{room.roomNumber}}</td>
+          <td>{{room.peopleNumber}}</td>
+          <td>{{room.price}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Insurances Information</div>
+    <div class="panel-body">
+    <table class = "table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Departure Date</th>
+        <th>Return Date</th>
+        <th>Price</th>
+        <th>People Number</th>
+      </tr>
+      <tr *ngFor="let insurance of insurances">
+          <td>{{insurance.id}}</td>
+          <td>{{insurance.type}}</td>
+          <td>{{insurance.departureDate}}</td>
+          <td>{{insurance.returnDate}}</td>
+          <td>{{insurance.price}}</td>
+          <td>{{insurance.peopleNumber}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Trips Information</div>
+    <div class="panel-body">
+    <table class = "table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Destination</th>
+            <th>PeopleNumber</th>
+            <th>Price</th>
+          </tr>
+          <tr *ngFor="let trip of trips">
+              <td>{{trip.id}}</td>
+              <td>{{trip.destination}}</td>
+              <td>{{trip.peopleNumber}}</td>
+              <td>{{trip.countedPrice}}</td>
+          </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">Flights Information</div>
+    <div class="panel-body">
+    <table class = "table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Departure Date</th>
+            <th>Arrival Date</th>
+            <th>Departure Airport</th>
+            <th>Arrival Airport</th>
+            <th>People Number</th>
+            <th>Price</th>
+            <th>Options</th>
+          </tr>
+          <tr *ngFor="let flightMain of flightMains">
+              <td>{{flightMain.id}}</td>
+              <td>{{flightMain.departureDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+              <td>{{flightMain.arrivalDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+              <td>{{flightMain.departureAirport.symbol}}</td>
+              <td>{{flightMain.arrivalAirport.symbol}}</td>
+              <td>{{flightMain.peopleNumber}}</td>
+              <td>{{flightMain.price}}</td>
+              <td><button id = "detailsBtn" class = "btn btn-sm" (click) = "setFlightMainSharedService(flightMain.id)"
+                routerLink="/flightMainDetails">Details</button>
+                <button id = "deleteBtn" class = "btn btn-sm" (click) = "deleteFlightMain(flightMain)">Delete</button>
+              </td>
+          </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">Payments Information</div>
+    <div class="panel-body">
+    <table class = "table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Options</th>
+          </tr>
+          <tr *ngFor="let payment of payments">
+              <td>{{payment.id}}</td>
+              <td>{{payment.paymentType}}</td>
+              <td>{{payment.date}}</td>
+              <td>{{payment.amount}}</td>
+              <td>
+                <button id = "deleteBtn" class = "btn btn-sm" (click) = "deletePayment(payment)">Delete</button>
+              </td>
+          </tr>
+    </table>
+  </div>
+</div>
+
+<div #loader id="loader"></div>

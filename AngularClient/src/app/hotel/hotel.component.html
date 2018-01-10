@@ -1,0 +1,30 @@
+
+<p>
+  <button routerLink="/addHotel" class = "btn btn-sm" md-button> Add Hotel </button>
+  <button [routerLink]="['/hotelManagement']" class = "btn btn-sm" md-button (click)="getHotels()"> Get Hotels </button>
+</p>
+<table class = "table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Stars</th>
+    <th>Country</th>
+    <th>City</th>
+    <th>Street</th>
+    <th>HouseNumber</th>
+    <th>Options</th>
+  </tr>
+  <tr *ngFor="let hotel of hotels">
+      <td>{{hotel.id}}</td>
+      <td>{{hotel.name}}</td>
+      <td>{{hotel.stars}}</td>
+      <td>{{hotel.country}}</td>
+      <td>{{hotel.city}}</td>
+      <td>{{hotel.street}}</td>
+      <td>{{hotel.houseNumber}}</td>
+      <td><button id = "detailsBtn" [routerLink]="['/hotelManagement', { outlets: {'roomProperties':['hotelRoomManagement']}}]" class = "btn btn-sm" md-button (click)="showRooms(hotel.id)"> Show Rooms </button>
+      <button id = "deleteBtn" [routerLink]="['/hotelManagement']" class = "btn btn-sm" md-button (click)="deleteHotel(hotel)"> Delete </button></td>
+  </tr>
+</table>  
+<div #loader id="loader"></div>
+<router-outlet name='roomProperties'></router-outlet>

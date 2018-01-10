@@ -1,0 +1,27 @@
+<form [formGroup]='complexForm' novalidate>
+
+    <input formControlName='nameControl' ngModel #name type = "text" class = "form-control" placeholder="Hotel Name" />
+    <div *ngIf="!complexForm.controls['nameControl'].valid && complexForm.controls['nameControl'].touched" class="alert alert-danger">Name is required</div>
+
+    <input formControlName='starsControl' ngModel #stars type = "text" class = "form-control" placeholder="Number of stars" />
+    <div *ngIf="!complexForm.controls['starsControl'].valid && complexForm.controls['starsControl'].touched" class="alert alert-danger">It has to be an integer</div>
+    
+    <input formControlName='countryControl' ngModel #country type = "text" class = "form-control" placeholder="Country" />
+    <div *ngIf="!complexForm.controls['countryControl'].valid && complexForm.controls['countryControl'].touched" class="alert alert-danger">Countr is required</div>
+
+    <input formControlName='cityControl' ngModel #city type = "text" class = "form-control" placeholder="City" />
+    <div *ngIf="!complexForm.controls['cityControl'].valid && complexForm.controls['cityControl'].touched" class="alert alert-danger">City is required</div>
+
+    <input formControlName='streetControl' ngModel #street type = "text" class = "form-control" placeholder="Street" />
+    <div *ngIf="!complexForm.controls['streetControl'].valid && complexForm.controls['streetControl'].touched" class="alert alert-danger">Street is required</div>
+
+    <input formControlName='houseNrControl' ngModel #houseNr type = "text" class = "form-control" placeholder="House Number" />
+    <div *ngIf="!complexForm.controls['houseNrControl'].valid && complexForm.controls['houseNrControl'].touched" class="alert alert-danger">House number is required</div>
+
+</form>
+
+<button id = "addBtn" md-button class = "btn btn-sm" (click)="addHotel(name.value, stars.value,
+country.value, city.value, street.value, houseNr.value)" [disabled]="!complexForm.valid"> Add Hotel </button>
+<button id = "cancelBtn" routerLink="/hotelManagement" class = "btn btn-sm" md-button > Cancel </button>
+
+<div #loader id="loader"></div>

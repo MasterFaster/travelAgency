@@ -1,0 +1,28 @@
+
+<p>
+  <button md-button class = "btn btn-sm" routerLink="/addAirport"> Add Airport </button>
+  <button md-button class = "btn btn-sm" (click)="getAirports()"> Get Airports </button>
+</p>
+<table class = "table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>House Number</th>
+        <th>Options</th>
+      </tr>
+  <tr *ngFor="let airport of airports">
+      <td>{{airport.id}}</td>
+      <td>{{airport.name}}</td>
+      <td>{{airport.symbol}}</td>
+      <td>{{airport.country}}</td>
+      <td>{{airport.city}}</td>
+      <td>{{airport.street}}</td>
+      <td>{{airport.houseNumber}}</td>
+      <td><button md-button id = "deleteBtn" class = "btn btn-sm" (click)="deleteClient(client)"> Delete </button></td>
+  </tr>
+</table>  
+<div #loader id="loader"></div>

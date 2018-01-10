@@ -1,0 +1,35 @@
+
+
+<p>
+        <button md-button routerLink="/addClient" class = "btn btn-sm"> Add Client </button>
+  <button md-button (click)="getClients()" class = "btn btn-sm"> Get Clients </button>
+</p>
+<table class = "table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Second Name</th>
+        <th>PESEL</th>
+        <th>Phone</th>
+        <th>EMAIL</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>House Number</th>
+        <th>Options</th>
+      </tr>
+  <tr *ngFor="let client of clients">
+      <td>{{client.id}}</td>
+      <td>{{client.firstName}}</td>
+      <td>{{client.secondName}}</td>
+      <td>{{client.pesel}}</td>
+      <td>{{client.phoneNumber}}</td>
+      <td>{{client.email}}</td>
+      <td>{{client.country}}</td>
+      <td>{{client.city}}</td>
+      <td>{{client.street}}</td>
+      <td>{{client.houseNumber}}</td>
+      <td><button id = "deleteBtn" md-button class = "btn btn-sm" (click)="deleteClient(client)"> Delete </button></td>
+  </tr>
+</table>  
+<div #loader id="loader"></div>
