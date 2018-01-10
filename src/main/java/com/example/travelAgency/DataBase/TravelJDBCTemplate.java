@@ -215,6 +215,19 @@ public class TravelJDBCTemplate {
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new ReservationMapper());
     }
 
+    public List<Reservation> getReservationsSpecified(String firstName, String secondName, String hotelName){
+        if(!firstName.contains("%") && !firstName.contains("_"))
+            firstName = firstName + "%";
+        if(!secondName.contains("%") && !secondName.contains("_"))
+            secondName = secondName + "%";
+        if(!hotelName.contains("%") && !hotelName.contains("_"))
+            hotelName = hotelName + "%";
+        System.out.println("FirstName: *" + firstName + "* secondName: *" + secondName + "* hotelName: *" + hotelName +"*");
+        String sql = "Select * from rezerwacje JOIN hotele USING(id_hotelu) JOIN klienci USING(id_klienta) " +
+                "WHERE imie like ? AND nazwisko like ? AND nazwa like ?";
+        return jdbcTemplate.query(sql, new Object[]{firstName,secondName,hotelName}, new ReservationMapper());
+    }
+
     public void updateReservationPrice(int id){
         System.out.println("Updating in stored procedure = " + id);
         SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(dataSource).withProcedureName("obliczSumCene");

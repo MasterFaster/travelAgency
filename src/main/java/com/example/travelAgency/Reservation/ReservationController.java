@@ -50,4 +50,11 @@ public class ReservationController {
         return travelJDBCTemplate.getAllReservationsPrices();
     }
 
+    @RequestMapping(value = "/getSpecified", method = RequestMethod.GET)
+    public List<Reservation> getSpecifiedReservations(@RequestParam("firstName") String firstName,
+                                                      @RequestParam("secondName") String secondName,
+                                                      @RequestParam("hotelName") String hotelName){
+        return travelJDBCTemplate.getReservationsSpecified(firstName, secondName,hotelName);
+    }
+
 }

@@ -37,6 +37,16 @@ export class ReservationComponent implements OnInit {
     });
   }
 
+  findReservation(firstName, secondName, hotelName): void{
+    this.startLoader();
+    let params = new HttpParams().set("firstName", firstName)
+    .set("secondName",secondName).set("hotelName",hotelName);
+    this.http.get<Reservation>('/reservation/getSpecified',{params: params}).subscribe(reservationGet => {
+      this.reservations = reservationGet;
+      this.stopLoader();
+    })
+  }
+
   deleteReservation(reservation): void{
     this.startLoader();
     this.http.post('/reservation/delete', reservation).toPromise().then(res =>{

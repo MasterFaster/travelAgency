@@ -1,7 +1,31 @@
 <p>
   <button routerLink="/addReservation" class = "btn btn-sm" md-button> Add Reservation </button>
   <button class = "btn btn-sm" md-button (click)="getReservations()"> Get Reservations </button>
+  
 </p>
+
+
+
+<form class="form-inline">
+  First Name:
+  <input class = "form-control" #peopleFirstNameField/> 
+</form>
+
+<form class="form-inline">
+  Second Name:
+  <input class = "form-control" #peopleSecondNameField>
+</form>
+
+<form class="form-inline">
+  Hotel Name:
+  <input class = "form-control" #hotelNameField>
+</form>
+
+
+
+<button id = "detailsBtn" class = "btn btn-sm" md-button (click)="findReservation(peopleFirstNameField.value,
+peopleSecondNameField.value, hotelNameField.value)"> Find </button>
+
 
 <table class = "table table-striped">
   <tr>
