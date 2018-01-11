@@ -19,6 +19,16 @@
     color: white;
     font-weight: bold;
   }
+  #detailsBtn{
+    background-color: 	rgba(0, 68, 255, 0.801);
+    color: white;
+    font-weight: bold;
+  }
+  #editBtn{
+    background-color: 	rgba(183, 0, 255, 0.918);
+    color: white;
+    font-weight: bold;
+  }
   td{
     text-align: center;
     vertical-align: middle;

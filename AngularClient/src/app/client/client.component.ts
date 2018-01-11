@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Client} from './ClientDO'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { ClientSharedService } from '../client-edit/ClientSharedService'
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -11,7 +13,9 @@ export class ClientComponent implements OnInit {
   @ViewChild('loader') loader: ElementRef;
   clients: Client;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private clientSS: ClientSharedService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getClients();
@@ -35,6 +39,11 @@ export class ClientComponent implements OnInit {
     }).catch(error =>{
         console.log(error);
     });
+  }
+
+  editClient(client): void{
+    this.clientSS.client = client;
+    this.router.navigate(['/clientEdit']);
   }
 
   stopLoader():void{

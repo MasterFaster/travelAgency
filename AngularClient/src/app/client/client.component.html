@@ -29,7 +29,8 @@
       <td>{{client.city}}</td>
       <td>{{client.street}}</td>
       <td>{{client.houseNumber}}</td>
-      <td><button id = "deleteBtn" md-button class = "btn btn-sm" (click)="deleteClient(client)"> Delete </button></td>
+      <td><button id = "editBtn" md-button class = "btn btn-sm" (click)="editClient(client)"> Edit </button>
+      <button id = "deleteBtn" md-button class = "btn btn-sm" (click)="deleteClient(client)"> Delete </button></td>
   </tr>
 </table>  
 <div #loader id="loader"></div>

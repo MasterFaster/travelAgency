@@ -82,6 +82,13 @@ public class TravelJDBCTemplate {
         jdbcTemplate.update(sql, new Object[]{client.getId()});
     }
 
+    public void updateClient(Client client){
+        String sql = "UPDATE klienci SET imie = ?, nazwisko = ?, pesel = ?, telefon = ?, email = ?, kraj = ?, miasto = ?, " +
+                "ulica = ?, numer_domu = ? WHERE id_klienta = ?";
+        jdbcTemplate.update(sql, new Object[]{client.getFirstName(),client.getSecondName(), client.getPesel(), client.getPhoneNumber(),
+        client.getEmail(), client.getCountry(), client.getCity(), client.getStreet(), client.getHouseNumber(), client.getId()});
+    }
+
     public double getClientLoan(int id){
         SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(dataSource).withFunctionName("kwotaDoZaplaty");
         SqlParameterSource in = new MapSqlParameterSource()

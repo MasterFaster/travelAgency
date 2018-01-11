@@ -35,6 +35,13 @@ public class ClientController {
         return new ResponseEntity<Client>(client, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<Client> editClient(@RequestBody Client client){
+        System.out.println("Updating client personal details");
+        travelJDBCTemplate.updateClient(client);
+        return new ResponseEntity<Client>(client, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Client> deleteClient(@RequestBody Client client){
         System.out.println("Deleting client from dataBase");

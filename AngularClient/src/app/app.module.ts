@@ -31,7 +31,9 @@ import { ReservationAddFlightComponent } from './reservation-add-flight/reservat
 import { ReservationFlightMainDetailsComponent } from './reservation-flight-main-details/reservation-flight-main-details.component';
 import { FlightMainSharedService } from './reservation-flight-main-details/FlightMainSharedService';
 import { PaymentAddComponent } from './payment-add/payment-add.component';
-import { CashStatsComponent } from './cash-stats/cash-stats.component'
+import { CashStatsComponent } from './cash-stats/cash-stats.component';
+import { ClientEditComponent } from './client-edit/client-edit.component';
+import { ClientSharedService } from './client-edit/ClientSharedService'
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import { CashStatsComponent } from './cash-stats/cash-stats.component'
     ReservationAddFlightComponent,
     ReservationFlightMainDetailsComponent,
     PaymentAddComponent,
-    CashStatsComponent
+    CashStatsComponent,
+    ClientEditComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { CashStatsComponent } from './cash-stats/cash-stats.component'
     AlertModule.forRoot(),
     ReactiveFormsModule
   ],
-  providers: [HotelRoomSharedService, ReservationDetailsSharedService, TripDetailsSharedService, FormBuilder, FlightMainSharedService],
+  providers: [HotelRoomSharedService, ReservationDetailsSharedService, TripDetailsSharedService, FormBuilder, FlightMainSharedService,
+  ClientSharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

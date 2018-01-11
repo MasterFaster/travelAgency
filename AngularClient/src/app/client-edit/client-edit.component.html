@@ -1,0 +1,34 @@
+<form [formGroup]='complexForm' novalidate>
+  
+      <input formControlName='firstNameControl' ngModel #firstName type = "text" class = "form-control" placeholder="First Name" value = "{{clientSS.client.firstName}}"/>
+      <div *ngIf="!complexForm.controls['firstNameControl'].valid && complexForm.controls['firstNameControl'].dirty" class="alert alert-danger">First Name is required</div>
+      
+      <input formControlName='secondNameControl' ngModel #secondName type = "text" class = "form-control" placeholder="Second Name" value = "{{clientSS.client.secondName}}"/>
+      <div *ngIf="!complexForm.controls['secondNameControl'].valid && complexForm.controls['secondNameControl'].dirty" class="alert alert-danger">Second Name is required</div>
+  
+      <input formControlName='peselControl' ngModel #pesel type = "text" class = "form-control" placeholder="Pesel" value = "{{clientSS.client.pesel}}"/>
+      <div *ngIf="!complexForm.controls['peselControl'].valid && complexForm.controls['peselControl'].dirty" class="alert alert-danger">Pesel is required and it has to be an integer</div>
+  
+      <input formControlName='phoneNrControl'  ngModel #phoneNr type = "text" class = "form-control" placeholder="Phone Number" value = "{{clientSS.client.phoneNumber}}">
+      <div *ngIf="!complexForm.controls['phoneNrControl'].valid && complexForm.controls['phoneNrControl'].dirty" class="alert alert-danger">Phone Number has to be a number</div>
+   
+      <input #email type = "text" class = "form-control" placeholder="E-mail" value = "{{clientSS.client.email}}">
+      <input #country type = "text" class = "form-control" placeholder="Country" value = "{{clientSS.client.country}}"/>
+      <input #city type = "text" class = "form-control"  placeholder="City" value = "{{clientSS.client.city}}"/>
+      <input #street type = "text" class = "form-control" placeholder="Street" value = "{{clientSS.client.street}}"/>
+      <input #houseNr type = "text" class = "form-control" placeholder="House Number" value = "{{clientSS.client.houseNumber}}"/>
+  
+  </form>
+  
+  <p>
+      <button id = "addBtn" md-button class = "btn btn-sm" (click)="editClient(firstName.value, secondName.value, pesel.value,
+      phoneNr.value, email.value, country.value, city.value, street.value, houseNr.value)"
+      routerLink="/clientManagement" [disabled]="(!complexForm.controls['firstNameControl'].valid && complexForm.controls['firstNameControl'].dirty)  
+      || (!complexForm.controls['secondNameControl'].valid && complexForm.controls['secondNameControl'].dirty) 
+      || (!complexForm.controls['peselControl'].valid && complexForm.controls['peselControl'].dirty) 
+      || (!complexForm.controls['phoneNrControl'].valid && complexForm.controls['phoneNrControl'].dirty)"> Edit Client </button>
+  
+      <button id = "cancelBtn" md-button type = "button" class = "btn btn-sm" routerLink="/clientManagement"> Cancel </button>
+  </p>
+  
+  <div #loader id="loader"></div> 

@@ -19,6 +19,7 @@ import { ReservationAddFlightComponent } from './app/reservation-add-flight/rese
 import { ReservationFlightMainDetailsComponent } from './app/reservation-flight-main-details/reservation-flight-main-details.component'
 import { PaymentAddComponent } from './app/payment-add/payment-add.component'
 import { CashStatsComponent } from './app/cash-stats/cash-stats.component'
+import { ClientEditComponent } from './app/client-edit/client-edit.component'
 export const AppRoutes: any = [
     { path: "clientManagement", component: ClientComponent},
     { path: "hotelManagement", component: HotelComponent, children: [
@@ -41,7 +42,8 @@ export const AppRoutes: any = [
     { path: "addReservationFlight", component: ReservationAddFlightComponent },
     { path: "flightMainDetails", component: ReservationFlightMainDetailsComponent },
     { path: "addPayment", component: PaymentAddComponent },
-    { path: "cashStats", component: CashStatsComponent }
+    { path: "cashStats", component: CashStatsComponent },
+    { path: "clientEdit", component: ClientEditComponent }
 ];
 
 export const AppComponents: any = [
