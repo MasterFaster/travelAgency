@@ -1,3 +1,36 @@
-<p>
-  airport-edit works!
-</p>
+<form [formGroup]='complexForm' novalidate>
+  
+      <input formControlName='nameControl' ngModel #name type = "text" class = "form-control" placeholder="Name" value = "{{airportSS.airport.name}}">
+      <div *ngIf="!complexForm.controls['nameControl'].valid && complexForm.controls['nameControl'].dirty" class="alert alert-danger">Name is required</div>
+  
+      <input formControlName='symbolControl' ngModel #symbol type = "text" class = "form-control" placeholder="Symbol" value = "{{airportSS.airport.symbol}}">
+      <div *ngIf="!complexForm.controls['symbolControl'].valid && complexForm.controls['symbolControl'].dirty" class="alert alert-danger">Symbol is required</div>
+  
+      <input formControlName='countryControl' ngModel #country type = "text" class = "form-control" placeholder="Country" value = "{{airportSS.airport.country}}"/>
+      <div *ngIf="!complexForm.controls['countryControl'].valid && complexForm.controls['countryControl'].dirty" class="alert alert-danger">Country is required</div>
+  
+      <input formControlName='cityControl' ngModel #city type = "text" class = "form-control" placeholder="City" value = "{{airportSS.airport.city}}"/>
+      <div *ngIf="!complexForm.controls['cityControl'].valid && complexForm.controls['cityControl'].dirty" class="alert alert-danger">City is required</div>
+  
+      <input formControlName='streetControl' ngModel #street type = "text" class = "form-control" placeholder="Street" value = "{{airportSS.airport.street}}"/>
+      <div *ngIf="!complexForm.controls['streetControl'].valid && complexForm.controls['streetControl'].dirty" class="alert alert-danger">Street is required</div>
+  
+      <input formControlName='houseNrControl' ngModel #houseNr type = "text" class = "form-control" placeholder="House Number" value = "{{airportSS.airport.houseNumber}}"/>
+      <div *ngIf="!complexForm.controls['houseNrControl'].valid && complexForm.controls['houseNrControl'].dirty" class="alert alert-danger">House number is required</div>
+  
+  </form>
+  
+  
+  <button id = "addBtn" md-button class = "btn btn-sm" (click)="editAirport(name.value, symbol.value,
+   country.value, city.value, street.value, houseNr.value)" [disabled]=
+   "(!complexForm.controls['nameControl'].valid && complexForm.controls['nameControl'].dirty)  
+   || (!complexForm.controls['symbolControl'].valid && complexForm.controls['symbolControl'].dirty) 
+   || (!complexForm.controls['countryControl'].valid && complexForm.controls['countryControl'].dirty) 
+   || (!complexForm.controls['cityControl'].valid && complexForm.controls['cityControl'].dirty) 
+   || (!complexForm.controls['streetControl'].valid && complexForm.controls['streetControl'].dirty) 
+   || (!complexForm.controls['houseNrControl'].valid && complexForm.controls['houseNrControl'].dirty)"
+  > Edit Airport </button>
+  
+  <button id = "cancelBtn" md-button class = "btn btn-sm" routerLink="/airportManagement"> Cancel </button>
+  
+  <div #loader id="loader"></div>

@@ -315,6 +315,13 @@ public class TravelJDBCTemplate {
         jdbcTemplate.update(sql, new Object[]{airport.getId()});
     }
 
+    public void updateAirport(Airport airport){
+        String sql = "UPDATE lotniska SET nazwa = ?, symbol = ?, kraj = ?, miasto = ?, ulica = ?, numer_domu = ? " +
+                "WHERE id_lotniska = ?";
+        jdbcTemplate.update(sql, new Object[]{airport.getName(), airport.getSymbol(), airport.getCountry(), airport.getCity(),
+        airport.getStreet(), airport.getHouseNumber(), airport.getId()});
+    }
+
     public List<Flight> getFlights(){
         /*String sql = "SELECT * FROM loty";
         List<Flight> flights = jdbcTemplate.query(sql,new FlightMapper());

@@ -44,4 +44,10 @@ public class AirportController {
         return new ResponseEntity<Airport>(airport, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<Airport> editAirport(@RequestBody Airport airport){
+        System.out.println("Updating airport information in dataBase...");
+        travelJDBCTemplate.updateAirport(airport);
+        return new ResponseEntity<Airport>(airport, HttpStatus.OK);
+    }
 }

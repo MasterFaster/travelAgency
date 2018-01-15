@@ -22,7 +22,10 @@
       <td>{{airport.city}}</td>
       <td>{{airport.street}}</td>
       <td>{{airport.houseNumber}}</td>
-      <td><button md-button id = "deleteBtn" class = "btn btn-sm" (click)="deleteAirport(airport)"> Delete </button></td>
+      <td>
+            <button md-button id = "editBtn" class = "btn btn-sm" (click)="editAirport(airport)"> Edit </button>
+          <button md-button id = "deleteBtn" class = "btn btn-sm" (click)="deleteAirport(airport)"> Delete </button>
+      </td>
   </tr>
 </table>  
 <div #loader id="loader"></div>

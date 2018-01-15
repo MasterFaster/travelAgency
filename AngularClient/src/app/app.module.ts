@@ -16,6 +16,7 @@ import { ClientAddComponent } from './client-add/client-add.component'
 import { HotelAddComponent} from './hotel-add/hotel-add.component';
 import { AirportComponent } from './airport/airport.component';
 import { AirportAddComponent } from './airport-add/airport-add.component';
+import { AirportSharedService } from './airport-edit/AirportSharedService'
 import { FlightComponent } from './flight/flight.component';
 import { FlightAddComponent } from './flight-add/flight-add.component'
 import { AlertModule } from 'ngx-bootstrap';
@@ -78,7 +79,7 @@ import { AirportEditComponent } from './airport-edit/airport-edit.component'
 
   ],
   providers: [HotelRoomSharedService, ReservationDetailsSharedService, TripDetailsSharedService, FormBuilder, FlightMainSharedService,
-  ClientSharedService, HotelSharedService],
+  ClientSharedService, HotelSharedService, AirportSharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

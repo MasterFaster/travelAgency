@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { Airport } from './AirportDO'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
+import { AirportSharedService } from '../airport-edit/AirportSharedService'
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-airport',
   templateUrl: './airport.component.html',
@@ -13,7 +15,8 @@ export class AirportComponent implements OnInit {
   @ViewChild('loader') loader: ElementRef;
   airports: Airport;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private airportSS: AirportSharedService,
+  private router: Router) { }
 
   ngOnInit() {
     this.getAirports();
@@ -39,6 +42,11 @@ export class AirportComponent implements OnInit {
         message: 'You want to remove object that is connected to other objects'
       });
   });
+  }
+
+  editAirport(airport): void{
+    this.airportSS.airport = airport;
+    this.router.navigate(['/airportEdit'])
   }
 
 
