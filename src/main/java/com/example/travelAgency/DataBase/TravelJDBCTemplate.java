@@ -363,6 +363,11 @@ public class TravelJDBCTemplate {
         jdbcTemplate.update(sql, new Object[]{flight.getId()});
     }
 
+    public void updateFlight(Flight flight){
+        String sql = "UPDATE loty SET cena = ?, ilosc_osob = ? WHERE id_lotu = ?";
+        jdbcTemplate.update(sql, new Object[]{flight.getPrice(), flight.getPeopleNumber(), flight.getId()});
+    }
+
     //***********************************************************************************************************************************************
 
     /**

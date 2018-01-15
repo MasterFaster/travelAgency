@@ -1,0 +1,30 @@
+<form [formGroup]='complexForm' novalidate>
+
+    <h4>Departure Airport:</h4>
+    <input [disabled] = "true"  type = "text" class = "form-control" value = "{{flightSS.flight.departureAirport.name}}"/>
+
+    <h4>Arrival Airport:</h4>
+    <input [disabled] = "true"  type = "text" class = "form-control" value = "{{flightSS.flight.arrivalAirport.name}}"/>
+
+    <h4>Departure Date:</h4>
+    <input [disabled] = "true" style="height: 40px" type="datetime-local" class = "form-control" value = "{{flightSS.flight.departureDate}}"/>
+  
+    <h4>Arrival Date:</h4>
+    <input [disabled] = "true" style="height: 40px" type="datetime-local" class = "form-control" value = "{{flightSS.flight.arrivalDate}}">
+
+
+    <input formControlName='priceControl' ngModel #price type = "text" class = "form-control" placeholder="Price" value = "{{flightSS.flight.price}}"/>
+    <div *ngIf="!complexForm.controls['priceControl'].valid && complexForm.controls['priceControl'].dirty" class="alert alert-danger">Price is required and it has to be a float with max two decimal places</div>
+    
+    <input formControlName='peopleNumberControl' ngModel #peopleNumber type = "text" class = "form-control" placeholder="Number of seats" value = "{{flightSS.flight.peopleNumber}}"/>
+    <div *ngIf="!complexForm.controls['peopleNumberControl'].valid && complexForm.controls['peopleNumberControl'].dirty" class="alert alert-danger">Number of seats is required and it has to be an integer</div>
+  
+  </form>
+  
+  <button id="addBtn" class = "btn btn-sm" (click)="editFlight(price.value, peopleNumber.value)" [disabled]=
+  "(!complexForm.controls['priceControl'].valid && complexForm.controls['priceControl'].dirty)  
+  || (!complexForm.controls['peopleNumberControl'].valid && complexForm.controls['peopleNumberControl'].dirty) " md-button>Edit Flight</button>
+  
+  <button id="cancelBtn" class = "btn btn-sm" routerLink="/flightManagement" md-button>Cancel</button>
+  
+  <div #loader id="loader"></div>

@@ -22,7 +22,10 @@
       <td>{{flight.arrivalDate | date: 'dd/MM/yyyy HH:mm'}}</td>
       <td>{{flight.departureAirport.symbol}}</td>
       <td>{{flight.arrivalAirport.symbol}}</td>
-      <td><button id = "deleteBtn" md-button class = "btn btn-sm" (click)="deleteFlight(flight)"> Delete </button></td>
+      <td>
+          <button id = "editBtn" md-button class = "btn btn-sm" (click)="editFlight(flight)"> Edit </button>
+        <button id = "deleteBtn" md-button class = "btn btn-sm" (click)="deleteFlight(flight)"> Delete </button>
+      </td>
   </tr>
 </table>  
 

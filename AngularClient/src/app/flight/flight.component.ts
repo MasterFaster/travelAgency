@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Flight } from './FlightDO'
 import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
+import { FlightSharedService } from '../flight-edit/FlightSharedService'
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
@@ -13,7 +15,7 @@ export class FlightComponent implements OnInit {
   @ViewChild('loader') loader: ElementRef;
   flights: Flight;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private flightSS: FlightSharedService) { }
 
   ngOnInit() {
       this.getFlights();
@@ -39,6 +41,11 @@ export class FlightComponent implements OnInit {
         message: 'You want to remove object that is connected to other objects'
       });
     });
+  }
+
+  editFlight(flight): void{
+    this.flightSS.flight = flight;
+    this.router.navigate(['flightEdit'])
   }
 
   stopLoader():void{

@@ -38,7 +38,9 @@ import { ClientSharedService } from './client-edit/ClientSharedService';
 import { HotelEditComponent } from './hotel-edit/hotel-edit.component';
 import { HotelSharedService } from './hotel-edit/HotelSharedService';
 import { Ng2PopupModule } from 'ng2-popup';
-import { AirportEditComponent } from './airport-edit/airport-edit.component'
+import { AirportEditComponent } from './airport-edit/airport-edit.component';
+import { FlightEditComponent } from './flight-edit/flight-edit.component'
+import { FlightSharedService } from './flight-edit/FlightSharedService'
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +67,8 @@ import { AirportEditComponent } from './airport-edit/airport-edit.component'
     CashStatsComponent,
     ClientEditComponent,
     HotelEditComponent,
-    AirportEditComponent
+    AirportEditComponent,
+    FlightEditComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,7 @@ import { AirportEditComponent } from './airport-edit/airport-edit.component'
 
   ],
   providers: [HotelRoomSharedService, ReservationDetailsSharedService, TripDetailsSharedService, FormBuilder, FlightMainSharedService,
-  ClientSharedService, HotelSharedService, AirportSharedService],
+  ClientSharedService, HotelSharedService, AirportSharedService, FlightSharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

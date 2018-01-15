@@ -45,4 +45,11 @@ public class FlightController {
         }
         return new ResponseEntity<Flight>(flight, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<Flight> updateFlight(@RequestBody Flight flight){
+        System.out.println("Updating flight information...");
+        travelJDBCTemplate.updateFlight(flight);
+        return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+    }
 }
