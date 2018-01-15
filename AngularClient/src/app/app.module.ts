@@ -78,8 +78,7 @@ import { FlightSharedService } from './flight-edit/FlightSharedService'
     FormsModule,
     AlertModule.forRoot(),
     ReactiveFormsModule,
-    Ng2PopupModule,
-
+    Ng2PopupModule
   ],
   providers: [HotelRoomSharedService, ReservationDetailsSharedService, TripDetailsSharedService, FormBuilder, FlightMainSharedService,
   ClientSharedService, HotelSharedService, AirportSharedService, FlightSharedService],
