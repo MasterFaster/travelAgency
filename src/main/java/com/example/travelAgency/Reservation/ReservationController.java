@@ -54,6 +54,7 @@ public class ReservationController {
     public List<Reservation> getSpecifiedReservations(@RequestParam("firstName") String firstName,
                                                       @RequestParam("secondName") String secondName,
                                                       @RequestParam("hotelName") String hotelName){
+        System.out.println("Downloading reservetion with filters");
         return travelJDBCTemplate.getReservationsSpecified(firstName, secondName,hotelName);
     }
 

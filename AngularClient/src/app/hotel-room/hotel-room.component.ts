@@ -4,6 +4,7 @@ import { HotelRoom } from './HotelRoomDO'
 import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { URLSearchParams } from '@angular/http'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-hotel-room',
   templateUrl: './hotel-room.component.html',
@@ -12,6 +13,7 @@ import { URLSearchParams } from '@angular/http'
 export class HotelRoomComponent implements OnInit {
 
   complexForm: FormGroup;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   @ViewChild('loader') loader: ElementRef;
   rooms: HotelRoom;
   id: number;
@@ -68,10 +70,16 @@ export class HotelRoomComponent implements OnInit {
   deleteRoom(room): void{
     this.startLoader();
     this.http.post('/room/delete',room).toPromise().then(res =>{
+      this.stopLoader();
       this.getRooms(this.id);
       console.log(res)
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: `You want to remove object that is connected to other objects.
+        You should remove reservations, which contain this room`
+      });
     });
   }
 

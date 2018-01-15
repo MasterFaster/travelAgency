@@ -9,7 +9,7 @@ import { HotelComponent } from './hotel/hotel.component';
 import { HotelRoomComponent } from './hotel-room/hotel-room.component';
 import { HotelRoomSharedService } from './hotel/hotelRoomSharedService';
 import { ReservationComponent } from './reservation/reservation.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
 import { ReservationDetailsSharedService } from './reservation-details/reservationDetailsSharedService';
 import { ClientAddComponent } from './client-add/client-add.component'
@@ -33,7 +33,11 @@ import { FlightMainSharedService } from './reservation-flight-main-details/Fligh
 import { PaymentAddComponent } from './payment-add/payment-add.component';
 import { CashStatsComponent } from './cash-stats/cash-stats.component';
 import { ClientEditComponent } from './client-edit/client-edit.component';
-import { ClientSharedService } from './client-edit/ClientSharedService'
+import { ClientSharedService } from './client-edit/ClientSharedService';
+import { HotelEditComponent } from './hotel-edit/hotel-edit.component';
+import { HotelSharedService } from './hotel-edit/HotelSharedService';
+import { Ng2PopupModule } from 'ng2-popup';
+import { AirportEditComponent } from './airport-edit/airport-edit.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +62,9 @@ import { ClientSharedService } from './client-edit/ClientSharedService'
     ReservationFlightMainDetailsComponent,
     PaymentAddComponent,
     CashStatsComponent,
-    ClientEditComponent
+    ClientEditComponent,
+    HotelEditComponent,
+    AirportEditComponent
   ],
   imports: [
     BrowserModule,
@@ -67,10 +73,12 @@ import { ClientSharedService } from './client-edit/ClientSharedService'
     HttpClientModule,
     FormsModule,
     AlertModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2PopupModule,
+
   ],
   providers: [HotelRoomSharedService, ReservationDetailsSharedService, TripDetailsSharedService, FormBuilder, FlightMainSharedService,
-  ClientSharedService],
+  ClientSharedService, HotelSharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

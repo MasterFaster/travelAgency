@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Hotel } from './HotelDO'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { HotelRoomSharedService } from '../hotel/hotelRoomSharedService'
+import { Router } from '@angular/router'
+import { HotelSharedService } from '../hotel-edit/HotelSharedService'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-hotel',
   templateUrl: './hotel.component.html',
@@ -9,12 +12,14 @@ import { HotelRoomSharedService } from '../hotel/hotelRoomSharedService'
 })
 export class HotelComponent implements OnInit {
 
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   @ViewChild('loader') loader: ElementRef;
   hotels: Hotel;
   debugger: string;
 
-  constructor(private http: HttpClient,
-              private hotelRoomService: HotelRoomSharedService) { }
+  constructor(private http: HttpClient, private router: Router,
+              private hotelRoomService: HotelRoomSharedService, 
+              private hotelSS: HotelSharedService) { }
 
   ngOnInit() {
     this.getHotels();
@@ -35,8 +40,17 @@ export class HotelComponent implements OnInit {
         this.getHotels();
         console.log(res)
       }).catch(error =>{
-          console.log(error);
+        this.stopLoader();
+        this.popup.open(Ng2MessagePopupComponent, {
+          title: 'Operation denied',
+          message: 'You want to remove object that is connected to other objects'
+        });
       });
+  }
+
+  editHotel(hotel): void{
+    this.hotelSS.hotel = hotel;
+    this.router.navigate(['/hotelEdit']);
   }
 
   showRooms(id, name):void{

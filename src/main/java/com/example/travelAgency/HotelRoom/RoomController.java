@@ -1,6 +1,7 @@
 package com.example.travelAgency.HotelRoom;
 
 import com.example.travelAgency.DataBase.TravelJDBCTemplate;
+import oracle.jdbc.OracleDatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,8 +71,12 @@ public class RoomController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Room> deleteClient(@RequestBody Room room){
         System.out.println("Deleting room from dataBase");
-        System.out.println(room.getId());
-        travelJDBCTemplate.deleteRoom(room);
+        try {
+            travelJDBCTemplate.deleteRoom(room);
+        }catch(OracleDatabaseException ex){
+            ex.printStackTrace();
+            return new ResponseEntity<Room>(room, HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<Room>(room, HttpStatus.OK);
     }
 

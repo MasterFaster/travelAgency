@@ -22,7 +22,9 @@
       <td>{{airport.city}}</td>
       <td>{{airport.street}}</td>
       <td>{{airport.houseNumber}}</td>
-      <td><button md-button id = "deleteBtn" class = "btn btn-sm" (click)="deleteClient(client)"> Delete </button></td>
+      <td><button md-button id = "deleteBtn" class = "btn btn-sm" (click)="deleteAirport(airport)"> Delete </button></td>
   </tr>
 </table>  
 <div #loader id="loader"></div>
+
+<ng2-popup #popup></ng2-popup>

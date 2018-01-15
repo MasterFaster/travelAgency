@@ -39,6 +39,7 @@ export class ReservationComponent implements OnInit {
 
   findReservation(firstName, secondName, hotelName): void{
     this.startLoader();
+    console.log("finding specified reservation")
     let params = new HttpParams().set("firstName", firstName)
     .set("secondName",secondName).set("hotelName",hotelName);
     this.http.get<Reservation>('/reservation/getSpecified',{params: params}).subscribe(reservationGet => {

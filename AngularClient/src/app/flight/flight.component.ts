@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Flight } from './FlightDO'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
@@ -8,6 +9,7 @@ import { Flight } from './FlightDO'
 })
 export class FlightComponent implements OnInit {
 
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   @ViewChild('loader') loader: ElementRef;
   flights: Flight;
 
@@ -31,7 +33,11 @@ export class FlightComponent implements OnInit {
       this.getFlights();
       console.log(res)
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'You want to remove object that is connected to other objects'
+      });
     });
   }
 

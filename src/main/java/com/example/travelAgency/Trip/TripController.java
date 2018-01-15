@@ -2,6 +2,7 @@ package com.example.travelAgency.Trip;
 
 import com.example.travelAgency.DataBase.TravelJDBCTemplate;
 import com.example.travelAgency.Hotel.Hotel;
+import oracle.jdbc.OracleDatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,12 @@ public class TripController {
     @RequestMapping(value = "/deleteAvailable", method = RequestMethod.POST)
     public ResponseEntity<Trip> deleteAvailableTrip(@RequestBody Trip trip){
         System.out.println("Deleting available trip from dataBase...");
-        travelJDBCTemplate.deleteAvailableTrip(trip);
+        try {
+            travelJDBCTemplate.deleteAvailableTrip(trip);
+        }catch(OracleDatabaseException ex){
+            ex.printStackTrace();
+            return new ResponseEntity<Trip>(trip, HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<Trip>(trip, HttpStatus.OK);
     }
 

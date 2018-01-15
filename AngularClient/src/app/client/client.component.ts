@@ -3,6 +3,7 @@ import {Client} from './ClientDO'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { ClientSharedService } from '../client-edit/ClientSharedService'
 import { Router } from '@angular/router'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router'
 })
 export class ClientComponent implements OnInit {
 
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   @ViewChild('loader') loader: ElementRef;
   clients: Client;
 
@@ -35,9 +37,13 @@ export class ClientComponent implements OnInit {
     this.startLoader();
     this.http.post('/client/delete',client).toPromise().then(res =>{
       this.getClients();
-      console.log(res)
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: `You want to remove object that is connected to other objects.
+        You should remove all reservations connected to this client` 
+      });
     });
   }
 

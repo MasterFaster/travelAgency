@@ -24,6 +24,7 @@ import com.example.travelAgency.Reservation.ReservationMapper;
 import com.example.travelAgency.Trip.Trip;
 import com.example.travelAgency.Trip.TripMapper;
 import com.example.travelAgency.Trip.TripReservationMapper;
+import oracle.jdbc.OracleDatabaseException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -77,7 +78,7 @@ public class TravelJDBCTemplate {
         client.getHouseNumber()});
     }
 
-    public void deleteClient(Client client){
+    public void deleteClient(Client client) throws OracleDatabaseException{
         String sql = "DELETE FROM KLIENCI WHERE ID_KLIENTA = ?";
         jdbcTemplate.update(sql, new Object[]{client.getId()});
     }
@@ -110,7 +111,7 @@ public class TravelJDBCTemplate {
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new HotelMapper());
     }
 
-    public void deleteHotel(Hotel hotel){
+    public void deleteHotel(Hotel hotel) throws OracleDatabaseException{
         String sqlDelRoom = "DELETE FROM POKOJE WHERE id_hotelu = ?";
         jdbcTemplate.update(sqlDelRoom, new Object[]{hotel.getId()});
         String sqlDelHotel = "DELETE FROM HOTELE WHERE ID_HOTELU = ?";
@@ -122,6 +123,13 @@ public class TravelJDBCTemplate {
                 "(NAZWA, GWIAZDKI, KRAJ, MIASTO, ULICA, NUMER_DOMU) VALUES (?,?,?,?,?,?)";
         jdbcTemplate.update(sql,new Object[]{hotel.getName(), hotel.getStars(),hotel.getCountry(),hotel.getCity(),
                 hotel.getStreet(),hotel.getHouseNumber()});
+    }
+
+    public void updateHotel(Hotel hotel){
+        String sql = "UPDATE hotele SET nazwa = ?, gwiazdki = ?, kraj = ?, miasto = ?, ulica = ?, numer_domu = ? " +
+                "WHERE id_hotelu = ?";
+        jdbcTemplate.update(sql, new Object[]{hotel.getName(), hotel.getStars(), hotel.getCountry(), hotel.getCity(),
+        hotel.getStreet(), hotel.getHouseNumber(), hotel.getId()});
     }
 
     public List<Room> getRooms(int id){
@@ -175,7 +183,7 @@ public class TravelJDBCTemplate {
         jdbcTemplate.update(sql,new Object[]{room.getRoomNumber(), room.getPeopleNumber(), room.getHotelId(), room.getPrice()});
     }
 
-    public void deleteRoom(Room room){
+    public void deleteRoom(Room room) throws OracleDatabaseException {
         String sql = "DELETE FROM POKOJE WHERE ID_POKOJU = ?";
         jdbcTemplate.update(sql, new Object[]{room.getId()});
         System.out.println("Room deleting ended");
@@ -302,6 +310,11 @@ public class TravelJDBCTemplate {
                             airport.getStreet(), airport.getHouseNumber()});
     }
 
+    public void deleteAirport(Airport airport) throws OracleDatabaseException {
+        String sql = "DELETE from lotniska WHERE id_lotniska = ?";
+        jdbcTemplate.update(sql, new Object[]{airport.getId()});
+    }
+
     public List<Flight> getFlights(){
         /*String sql = "SELECT * FROM loty";
         List<Flight> flights = jdbcTemplate.query(sql,new FlightMapper());
@@ -338,7 +351,7 @@ public class TravelJDBCTemplate {
                 flight.getDepartureAirportId(), flight.getArrivalAirportId(), flight.getPeopleNumber()});
     }
 
-    public void deleteFlight(Flight flight){
+    public void deleteFlight(Flight flight) throws OracleDatabaseException{
         String sql = "DELETE FROM loty WHERE id_lotu = ?";
         jdbcTemplate.update(sql, new Object[]{flight.getId()});
     }
@@ -460,7 +473,7 @@ public class TravelJDBCTemplate {
         return jdbcTemplate.query(sql, new TripMapper());
     }
 
-    public void deleteAvailableTrip(Trip trip){
+    public void deleteAvailableTrip(Trip trip) throws OracleDatabaseException{
         String sql = "DELETE FROM wycieczki_hotele WHERE id_wyc = ?";
         jdbcTemplate.update(sql, new Object[]{trip.getId()});
         sql = "DELETE FROM wycieczki WHERE id_wyc = ?";

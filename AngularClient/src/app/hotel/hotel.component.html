@@ -22,9 +22,17 @@
       <td>{{hotel.city}}</td>
       <td>{{hotel.street}}</td>
       <td>{{hotel.houseNumber}}</td>
-      <td><button id = "detailsBtn" [routerLink]="['/hotelManagement', { outlets: {'roomProperties':['hotelRoomManagement']}}]" class = "btn btn-sm" md-button (click)="showRooms(hotel.id, hotel.name)"> Show Rooms </button>
-      <button id = "deleteBtn" [routerLink]="['/hotelManagement']" class = "btn btn-sm" md-button (click)="deleteHotel(hotel)"> Delete </button></td>
+      <td>
+        <button id = "editBtn" md-button class = "btn btn-sm" (click)="editHotel(hotel)"> Edit </button>
+        <button id = "detailsBtn" [routerLink]="['/hotelManagement', { outlets: {'roomProperties':['hotelRoomManagement']}}]" class = "btn btn-sm" md-button (click)="showRooms(hotel.id, hotel.name)"> Show Rooms </button>
+        <button id = "deleteBtn" [routerLink]="['/hotelManagement']" class = "btn btn-sm" md-button (click)="deleteHotel(hotel)"> Delete </button>
+      </td>
   </tr>
 </table>  
+
+
 <div #loader id="loader"></div>
+
 <router-outlet name='roomProperties'></router-outlet>
+
+<ng2-popup #popup></ng2-popup>
