@@ -252,7 +252,7 @@ public class TravelJDBCTemplate {
     }
 
     public float getAllReservationsPrices(){
-        String sql = "SELECT SUM(cena_suma) from rezerwacje";
+        String sql = "SELECT NVL(SUM(cena_suma),0) from rezerwacje";
         return jdbcTemplate.queryForObject(sql, Float.class);
     }
 
@@ -540,7 +540,7 @@ public class TravelJDBCTemplate {
     }
 
     public float getPaymentsCash(){
-        String sql = "SELECT SUM(kwota) from platnosci";
+        String sql = "SELECT NVL(SUM(kwota),0) from platnosci";
         return jdbcTemplate.queryForObject(sql, Float.class);
     }
 }

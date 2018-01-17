@@ -3,14 +3,14 @@
     Departure Airport:
     <select formControlName='departureAirportControl' ngModel #departureAirport class = "form-control" (click) = "reset()"> 
       <option disabled>
-      <td>-id-</td>
+      <!-- <td>-id-</td> -->
       <td>-name-</td>
       <td>-symbol-</td>
       <td>-country-</td>
       <td>-city-</td>
       </option>
       <option *ngFor="let airport of airports" [value] = "airport.id">
-        <td>-{{airport.id}}-</td>
+        <!-- <td>-{{airport.id}}-</td> -->
         <td>-{{airport.name}}-</td>
         <td>-{{airport.symbol}}-</td>
         <td>-{{airport.country}}-</td>
@@ -22,14 +22,14 @@
     Arrival Airport:
     <select formControlName='arrivalAirportControl' #arrivalAirport class = "form-control" (click) = "reset()"> 
       <option disabled>
-      <td>-id-</td>
+      <!-- <td>-id-</td> -->
       <td>-name-</td>
       <td>-symbol-</td>
       <td>-country-</td>
       <td>-city-</td>
       </option>
       <option *ngFor="let airport of airports" [value] = "airport.id">
-        <td>-{{airport.id}}-</td>
+        <!-- <td>-{{airport.id}}-</td> -->
         <td>-{{airport.name}}-</td>
         <td>-{{airport.symbol}}-</td>
         <td>-{{airport.country}}-</td>
@@ -57,7 +57,7 @@
 <div *ngIf="flightMainsListEmpty" class="alert alert-danger">There is no flight available</div>
 <table *ngIf="flightMainsAvailable" class = "table">
   <tr>
-    <th>ID</th>
+    <!-- <th>ID</th> -->
     <th>Price</th>
     <th>Seats</th>
     <th>Departure Date</th>
@@ -66,7 +66,7 @@
     <th>Arrival Airport</th>
   </tr>
   <tr *ngFor="let flight of flightMains.flights">
-    <td>{{flight.id}}</td>
+    <!-- <td>{{flight.id}}</td> -->
     <td>{{flight.price}}</td>
     <td>{{flight.peopleNumber}}</td>
     <td>{{flight.departureDate | date: 'dd/MM/yyyy HH:mm'}}</td>

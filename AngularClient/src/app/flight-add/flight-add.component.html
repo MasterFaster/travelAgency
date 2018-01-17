@@ -2,14 +2,14 @@
   <h4>Departure Airport:</h4>
   <select formControlName='departureAirportControl' ngModel #departureAirport class = "form-control"> <!-- (change)="hotelChanged($event.target.value)"> -->
     <option disabled>
-    <td>-id-</td>
+    <!-- <td>-id-</td> -->
     <td>-name-</td>
     <td>-symbol-</td>
     <td>-country-</td>
     <td>-city-</td>
     </option>
     <option *ngFor="let airport of airports" [value] = "airport.id"> <!-- [value]="category.id"> -->
-      <td>-{{airport.id}}-</td>
+      <!-- <td>-{{airport.id}}-</td> -->
       <td>-{{airport.name}}-</td>
       <td>-{{airport.symbol}}-</td>
       <td>-{{airport.country}}-</td>
@@ -21,14 +21,14 @@
   <h4>Arrival Airport:</h4>
   <select formControlName='arrivalAirportControl' #arrivalAirport class = "form-control"> 
     <option disabled>
-    <td>-id-</td>
+    <!-- <td>-id-</td> -->
     <td>-name-</td>
     <td>-symbol-</td>
     <td>-country-</td>
     <td>-city-</td>
     </option>
     <option *ngFor="let airport of airports" [value] = "airport.id"> <!-- [value]="category.id"> -->
-      <td>-{{airport.id}}-</td>
+      <!-- <td>-{{airport.id}}-</td> -->
       <td>-{{airport.name}}-</td>
       <td>-{{airport.symbol}}-</td>
       <td>-{{airport.country}}-</td>

@@ -9,13 +9,13 @@
   <div class="panel-body">
     <table class = "table table-striped">
       <tr>
-        <th>ID</th>
+        <!-- <th>ID</th> -->
         <th>Departure Date</th>
         <th>Return Date</th>
         <th>Price</th>
       </tr>
       <tr>
-          <td>{{reservationDetailsSS.reservation.id}}</td>
+          <!-- <td>{{reservationDetailsSS.reservation.id}}</td> -->
           <td>{{reservationDetailsSS.reservation.departureDate}}</td>
           <td>{{reservationDetailsSS.reservation.returnDate}}</td>
           <td>{{reservationDetailsSS.reservation.price}}</td>
@@ -30,7 +30,7 @@
   <div class="panel-body">
     <table class = "table table-striped">
       <tr>
-          <th>ID</th>
+          <!-- <th>ID</th> -->
           <th>First Name</th>
           <th>Second Name</th>
           <th>PESEL</th>
@@ -42,7 +42,7 @@
           <th>House Number</th>
         </tr>
       <tr *ngIf="isClientAvailable">
-          <td>{{reservationDetailsSS.reservation.client.id}}</td>
+          <!-- <td>{{reservationDetailsSS.reservation.client.id}}</td> -->
           <td>{{reservationDetailsSS.reservation.client.firstName}}</td>
           <td>{{reservationDetailsSS.reservation.client.secondName}}</td>
           <td>{{reservationDetailsSS.reservation.client.pesel}}</td>
@@ -73,7 +73,7 @@
   <div class="panel-body">
     <table class = "table table-striped">
       <tr>
-        <th>ID</th>
+        <!-- <th>ID</th> -->
         <th>Name</th>
         <th>Stars</th>
         <th>Country</th>
@@ -82,7 +82,7 @@
         <th>HouseNumber</th>
       </tr>
       <tr *ngIf="isHotelAvailable">
-          <td>{{reservationDetailsSS.reservation.hotel.id}}</td>
+          <!-- <td>{{reservationDetailsSS.reservation.hotel.id}}</td> -->
           <td>{{reservationDetailsSS.reservation.hotel.name}}</td>
           <td>{{reservationDetailsSS.reservation.hotel.stars}}</td>
           <td>{{reservationDetailsSS.reservation.hotel.country}}</td>
@@ -107,15 +107,15 @@
   <div class="panel-body">
     <table class = "table table-striped">
       <tr>
-        <th>ID</th>
-        <th>Hotel ID</th>
+        <!-- <th>ID</th> -->
+        <!-- <th>Hotel ID</th> -->
         <th>Room Number</th>
         <th>People Number</th>
         <th>Price</th>
       </tr>
       <tr *ngFor="let room of rooms">
-          <td>{{room.id}}</td>
-          <td>{{room.hotelId}}</td>
+          <!-- <td>{{room.id}}</td> -->
+          <!-- <td>{{room.hotelId}}</td> -->
           <td>{{room.roomNumber}}</td>
           <td>{{room.peopleNumber}}</td>
           <td>{{room.price}}</td>
@@ -129,7 +129,7 @@
     <div class="panel-body">
     <table class = "table table-striped">
       <tr>
-        <th>ID</th>
+        <!-- <th>ID</th> -->
         <th>Type</th>
         <th>Departure Date</th>
         <th>Return Date</th>
@@ -137,7 +137,7 @@
         <th>People Number</th>
       </tr>
       <tr *ngFor="let insurance of insurances">
-          <td>{{insurance.id}}</td>
+          <!-- <td>{{insurance.id}}</td> -->
           <td>{{insurance.type}}</td>
           <td>{{insurance.departureDate}}</td>
           <td>{{insurance.returnDate}}</td>
@@ -153,13 +153,13 @@
     <div class="panel-body">
     <table class = "table table-striped">
         <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Destination</th>
             <th>PeopleNumber</th>
             <th>Price</th>
           </tr>
           <tr *ngFor="let trip of trips">
-              <td>{{trip.id}}</td>
+              <!-- <td>{{trip.id}}</td> -->
               <td>{{trip.destination}}</td>
               <td>{{trip.peopleNumber}}</td>
               <td>{{trip.countedPrice}}</td>
@@ -174,7 +174,7 @@
     <div class="panel-body">
     <table class = "table table-striped">
         <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Departure Date</th>
             <th>Arrival Date</th>
             <th>Departure Airport</th>
@@ -184,7 +184,7 @@
             <th>Options</th>
           </tr>
           <tr *ngFor="let flightMain of flightMains">
-              <td>{{flightMain.id}}</td>
+              <!-- <td>{{flightMain.id}}</td> -->
               <td>{{flightMain.departureDate | date: 'dd/MM/yyyy HH:mm'}}</td>
               <td>{{flightMain.arrivalDate | date: 'dd/MM/yyyy HH:mm'}}</td>
               <td>{{flightMain.departureAirport.symbol}}</td>
@@ -206,14 +206,14 @@
     <div class="panel-body">
     <table class = "table table-striped">
         <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Type</th>
             <th>Date</th>
             <th>Amount</th>
             <th>Options</th>
           </tr>
           <tr *ngFor="let payment of payments">
-              <td>{{payment.id}}</td>
+              <!-- <td>{{payment.id}}</td> -->
               <td>{{payment.paymentType}}</td>
               <td>{{payment.date}}</td>
               <td>{{payment.amount}}</td>

@@ -4,13 +4,13 @@
 </p>
 <table class = "table table-striped">
 <tr>
-  <th>ID</th>
+  <!-- <th>ID</th> -->
   <th>Destination</th>
   <th>Price</th>
   <th>Options</th>
 </tr>
 <tr *ngFor="let trip of trips">
-<td>{{trip.id}}</td>
+<!-- <td>{{trip.id}}</td> -->
 <td>{{trip.destination}}</td>
 <td>{{trip.price}}</td>
 <td><button md-button id = "detailsBtn" class = "btn btn-sm" (click) = "setTripSharedService(trip)"

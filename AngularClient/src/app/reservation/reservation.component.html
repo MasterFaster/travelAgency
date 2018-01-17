@@ -20,24 +20,24 @@ peopleSecondNameField.value, hotelNameField.value)"> Find </button>
 
 <table class = "table table-striped">
   <tr>
-    <th>ID</th>
+    <!-- <th>ID</th> -->
     <th>Departure Date</th>
     <th>Return Date</th>
-    <th>HotelId</th>
+    <!-- <th>HotelId</th> -->
     <th>Hotel Name</th>
-    <th>ClientId</th>
+    <!-- <th>ClientId</th> -->
     <th>First Name</th>
     <th>Second Name</th>
     <th>Price</th>
     <th>Operations</th>
   </tr>
   <tr *ngFor="let reservation of reservations">
-      <td>{{reservation.id}}</td>
+      <!-- <td>{{reservation.id}}</td> -->
       <td>{{reservation.departureDate}}</td>
       <td>{{reservation.returnDate}}</td>
-      <td>{{reservation.hotelId}}</td>
+      <!-- <td>{{reservation.hotelId}}</td> -->
       <td>{{reservation.hotel.name}}</td>
-      <td>{{reservation.clientId}}</td>
+      <!-- <td>{{reservation.clientId}}</td> -->
       <td>{{reservation.client.firstName}}</td>
       <td>{{reservation.client.secondName}}</td>
       <td>{{reservation.price}}</td>

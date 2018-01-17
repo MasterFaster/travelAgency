@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/client")
 public class ClientController {
@@ -16,6 +17,7 @@ public class ClientController {
     @Autowired
     TravelJDBCTemplate travelJDBCTemplate;
 
+    @CrossOrigin
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public List<Client> getClients(){
         System.out.println("Downloading clients from dataBase...");
@@ -60,6 +62,12 @@ public class ClientController {
     public double getLoan(@RequestParam("id") int id){
         System.out.println("Downloading loan for client");
         return travelJDBCTemplate.getClientLoan(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/polymer", method = RequestMethod.POST)
+    public void polymer(@RequestBody Client client){
+        System.out.println("Client: " + client.getFirstName() + " " + client.getSecondName());
     }
 
 }
