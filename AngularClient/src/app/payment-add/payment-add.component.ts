@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { Payment } from './Payment'
 import { ReservationDetailsSharedService } from '../reservation-details/reservationDetailsSharedService'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-payment-add',
   templateUrl: './payment-add.component.html',
@@ -13,6 +14,7 @@ export class PaymentAddComponent implements OnInit {
 
   complexForm: FormGroup;
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
 
   constructor(private http: HttpClient, private router: Router, fb: FormBuilder,
     private reservationDetailsSS: ReservationDetailsSharedService) {
@@ -38,7 +40,13 @@ export class PaymentAddComponent implements OnInit {
     this.http.post('/payment/add', payment).toPromise().then( res =>{
         this.stopLoader();
         this.router.navigate(['/reservationDetailsManagement']);
-    })
+    }).catch(error =>{
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong. Probably input values are out of range'
+      });
+    });
   }
 
   stopLoader():void{

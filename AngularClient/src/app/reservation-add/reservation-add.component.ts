@@ -9,6 +9,7 @@ import { HotelRoom } from '../hotel-room/HotelRoomDO'
 import { Insurance } from '../insurance/InsuranceDO'
 import { Router } from '@angular/router'
 import { Trip } from '../trip/TripDO'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-reservation-add',
   templateUrl: './reservation-add.component.html',
@@ -19,6 +20,7 @@ export class ReservationAddComponent implements OnInit {
   complexForm: FormGroup;
   checkDateValid: boolean;
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   clients: Client;
   hotels: Hotel;
   rooms: HotelRoom;
@@ -185,7 +187,11 @@ export class ReservationAddComponent implements OnInit {
       console.log(res)
       this.router.navigate(['/reservationManagement']);
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong.'
+      });
     });
     console.log(departureDate.value)
     console.log(clientId)

@@ -4,6 +4,7 @@ import { Client } from '../client/ClientDO'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { ClientSharedService } from './ClientSharedService'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-client-edit',
   templateUrl: './client-edit.component.html',
@@ -13,7 +14,8 @@ export class ClientEditComponent  implements OnInit {
   
     complexForm: FormGroup;
     @ViewChild('loader') loader: ElementRef;
-  
+    @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
+
     constructor(private http: HttpClient, private router: Router, fb:FormBuilder,
     private clientSS: ClientSharedService) {
       this.complexForm = fb.group({
@@ -44,7 +46,11 @@ export class ClientEditComponent  implements OnInit {
           console.log(res)
           this.router.navigate(['/clientManagement']);
         }).catch(error =>{
-            console.log(error);
+          this.stopLoader();
+          this.popup.open(Ng2MessagePopupComponent, {
+            title: 'Operation denied',
+            message: 'Something went wrong. Probably input values are out of range'
+          });
         });
     }
     test(): void{

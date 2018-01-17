@@ -10,6 +10,7 @@ import { FlightMain } from '../reservation-add-flight/FlightMainDO'
 import { FlightMainSharedService } from '../reservation-flight-main-details/FlightMainSharedService'
 import { Payment } from '../payment-add/Payment'
 import { Reservation } from '../reservation/ReservationDO'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-reservation-details',
   templateUrl: './reservation-details.component.html',
@@ -18,6 +19,7 @@ import { Reservation } from '../reservation/ReservationDO'
 export class ReservationDetailsComponent implements OnInit {
 
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   client: Client;
   hotel: Hotel;
   rooms: HotelRoom;
@@ -144,7 +146,13 @@ export class ReservationDetailsComponent implements OnInit {
       this.updateReservationInfo();
       this.getPayments();
       this.stopLoader();
-    })
+    }).catch(error =>{
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong.'
+      });
+    });
   }
 
 

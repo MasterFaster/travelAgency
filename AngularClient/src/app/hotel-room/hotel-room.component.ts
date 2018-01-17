@@ -63,7 +63,11 @@ export class HotelRoomComponent implements OnInit {
         this.getRooms(this.id);
         console.log(res)
       }).catch(error =>{
-          console.log(error);
+        this.stopLoader();
+        this.popup.open(Ng2MessagePopupComponent, {
+          title: 'Operation denied',
+          message: 'Something went wrong. Probably input values are out of range'
+        });
       });
   }
 

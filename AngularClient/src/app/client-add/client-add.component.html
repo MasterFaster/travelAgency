@@ -23,9 +23,11 @@
 <p>
     <button id = "addBtn" md-button class = "btn btn-sm" (click)="addClient(firstName.value, secondName.value, pesel.value,
     phoneNr.value, email.value, country.value, city.value, street.value, houseNr.value)"
-    routerLink="/clientManagement" [disabled]="!complexForm.valid"> Add Client </button>
+    [disabled]="!complexForm.valid"> Add Client </button>
 
     <button id = "cancelBtn" md-button type = "button" class = "btn btn-sm" routerLink="/clientManagement"> Cancel </button>
 </p>
 
 <div #loader id="loader"></div> 
+
+<ng2-popup #popup></ng2-popup>

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms'
 import { Flight } from '../flight/FlightDO'
 import { Router } from '@angular/router'
 import { FlightSharedService } from './FlightSharedService'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-flight-edit',
   templateUrl: './flight-edit.component.html',
@@ -13,6 +14,7 @@ export class FlightEditComponent implements OnInit {
   
     complexForm: FormGroup;
     @ViewChild('loader') loader: ElementRef;
+    @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
     checkDateValid: boolean;
   
     constructor(private http: HttpClient, private router: Router, fb: FormBuilder,
@@ -38,7 +40,11 @@ export class FlightEditComponent implements OnInit {
           this.stopLoader();
           this.router.navigate(['/flightManagement']);
         }).catch(error =>{
-            console.log(error);
+          this.stopLoader();
+          this.popup.open(Ng2MessagePopupComponent, {
+            title: 'Operation denied',
+            message: 'Something went wrong. Probably input values are out of range'
+          });
         });
     }
   

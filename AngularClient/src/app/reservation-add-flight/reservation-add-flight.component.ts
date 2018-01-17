@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms'
 import { Router } from '@angular/router'
 import { ReservationDetailsSharedService } from '../reservation-details/reservationDetailsSharedService'
 import { FlightMain } from './FlightMainDO'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-reservation-add-flight',
   templateUrl: './reservation-add-flight.component.html',
@@ -14,6 +15,7 @@ export class ReservationAddFlightComponent implements OnInit {
 
   complexForm: FormGroup;
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   airports: Airport;
   flightMains: FlightMain;
   flightMainsAvailable:boolean = false;
@@ -69,7 +71,11 @@ export class ReservationAddFlightComponent implements OnInit {
       console.log(res)
       this.router.navigate(['/reservationDetailsManagement']);
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong. Probably input values are out of range'
+      });
     });
   }
 

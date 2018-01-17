@@ -3,6 +3,7 @@ import { Insurance } from '../insurance/InsuranceDO'
 import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Router } from '@angular/router'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-insurance-add',
   templateUrl: './insurance-add.component.html',
@@ -12,6 +13,7 @@ export class InsuranceAddComponent implements OnInit {
 
   complexForm: FormGroup;
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   
   constructor(private http: HttpClient, private router: Router, fb: FormBuilder) {
     this.complexForm = fb.group({
@@ -34,7 +36,11 @@ export class InsuranceAddComponent implements OnInit {
       this.router.navigate(['/insuranceManagement']);
       console.log(res)
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong. Probably input values are out of range'
+      });
     });
     //this.getHotels();
   }

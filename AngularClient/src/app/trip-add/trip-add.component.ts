@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms';
 import { Trip } from '../trip/TripDO'
 import { Hotel } from '../hotel/HotelDO'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-trip-add',
   templateUrl: './trip-add.component.html',
@@ -13,6 +14,7 @@ export class TripAddComponent implements OnInit {
 
   complexForm: FormGroup;
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   hotels: Hotel;
   selectedHotels: Array<Hotel> = [];
 
@@ -39,7 +41,11 @@ export class TripAddComponent implements OnInit {
       this.router.navigate(['/tripManagement']);
       console.log(res)
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong. Probably input values are out of range'
+      });
     });
   }
 

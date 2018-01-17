@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Airport } from '../airport/AirportDO'
 import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms';
 import { Router } from '@angular/router'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-airport-add',
   templateUrl: './airport-add.component.html',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router'
 export class AirportAddComponent implements OnInit {
   complexForm: FormGroup;
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
 
   constructor(private http: HttpClient, private router: Router, fb: FormBuilder) {
     this.complexForm = fb.group({
@@ -43,7 +45,11 @@ export class AirportAddComponent implements OnInit {
       this.router.navigate(['/airportManagement']);
       console.log(res)
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong. Probably input values are out of range'
+      });
     });
     //this.getClients();
   }

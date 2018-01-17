@@ -4,6 +4,7 @@ import { Airport } from '../airport/AirportDO'
 import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms';
 import { Flight } from '../flight/FlightDO'
 import { Router } from '@angular/router'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-flight-add',
   templateUrl: './flight-add.component.html',
@@ -13,6 +14,7 @@ export class FlightAddComponent implements OnInit {
 
   complexForm: FormGroup;
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   checkDateValid: boolean;
   airports: Airport;
 
@@ -60,7 +62,11 @@ export class FlightAddComponent implements OnInit {
         this.router.navigate(['/flightManagement']);
         console.log(res)
       }).catch(error =>{
-          console.log(error);
+        this.stopLoader();
+        this.popup.open(Ng2MessagePopupComponent, {
+          title: 'Operation denied',
+          message: 'Something went wrong. Probably input values are out of range'
+        });
       });
   }
 

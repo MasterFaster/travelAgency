@@ -8,6 +8,7 @@ import {Reservation} from './ReservationDO'
 import { URLSearchParams, RequestOptions } from '@angular/http'
 import { ReservationDetailsSharedService } from '../reservation-details/reservationDetailsSharedService'
 import { Insurance } from '../insurance/InsuranceDO'
+import { Ng2MessagePopupComponent, Ng2PopupComponent} from 'ng2-popup'
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
@@ -16,6 +17,7 @@ import { Insurance } from '../insurance/InsuranceDO'
 export class ReservationComponent implements OnInit {
 
   @ViewChild('loader') loader: ElementRef;
+  @ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
   reservations: Reservation;
   //+1 when startLoader, -1 when stopLoader, stop when loaderCounter == 0
   loaderCounter: number; 
@@ -55,7 +57,11 @@ export class ReservationComponent implements OnInit {
       this.stopLoader();
       console.log(res)
     }).catch(error =>{
-        console.log(error);
+      this.stopLoader();
+      this.popup.open(Ng2MessagePopupComponent, {
+        title: 'Operation denied',
+        message: 'Something went wrong. Probably input values are out of range'
+      });
     });
   }
 

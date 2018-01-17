@@ -23,7 +23,7 @@
   <p>
       <button id = "addBtn" md-button class = "btn btn-sm" (click)="editClient(firstName.value, secondName.value, pesel.value,
       phoneNr.value, email.value, country.value, city.value, street.value, houseNr.value)"
-      routerLink="/clientManagement" [disabled]="(!complexForm.controls['firstNameControl'].valid && complexForm.controls['firstNameControl'].dirty)  
+      [disabled]="(!complexForm.controls['firstNameControl'].valid && complexForm.controls['firstNameControl'].dirty)  
       || (!complexForm.controls['secondNameControl'].valid && complexForm.controls['secondNameControl'].dirty) 
       || (!complexForm.controls['peselControl'].valid && complexForm.controls['peselControl'].dirty) 
       || (!complexForm.controls['phoneNrControl'].valid && complexForm.controls['phoneNrControl'].dirty)"> Edit Client </button>
@@ -32,3 +32,4 @@
   </p>
   
   <div #loader id="loader"></div> 
+  <ng2-popup #popup></ng2-popup>
